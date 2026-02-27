@@ -1,0 +1,81 @@
+{
+    "data": {
+        "c_finan": [
+            {
+                "MONTO INVERSI\u00d3N": 110000,
+                "NOMBRE DE LA PROPUESTA": "MEJORAMIENTO DEL SERVICIO DE ATENCI\u00d3N DE SALUD B\u00c1SICOS EN PISCOCOTO  DE CENTRO POBLADO PISCOCOTO DISTRITO DE SUMBILCA DE LA PROVINCIA DE HUARAL DEL DEPARTAMENTO DE LIMA",
+                "PROVINCIA": "HUARAL"
+            },
+            {
+                "MONTO INVERSI\u00d3N": 68820,
+                "NOMBRE DE LA PROPUESTA": "MEJORAMIENTO DEL SERVICIO DE ATENCI\u00d3N DE SALUD B\u00c1SICOS EN CAUJUL   DISTRITO DE CAUJUL DE LA PROVINCIA DE OYON DEL DEPARTAMENTO DE LIMA",
+                "PROVINCIA": "OYON"
+            },
+            {
+                "MONTO INVERSI\u00d3N": 60038,
+                "NOMBRE DE LA PROPUESTA": "MEJORAMIENTO DEL SERVICIO DE EDUCACION PRIMARIA EN I.E. 20615 SAN JERONIMO  DE CENTRO POBLADO SURCO DISTRITO DE SURCO DE LA PROVINCIA DE HUAROCHIRI DEL DEPARTAMENTO DE LIMA",
+                "PROVINCIA": "HUAROCHIRI"
+            },
+            {
+                "MONTO INVERSI\u00d3N": 182452,
+                "NOMBRE DE LA PROPUESTA": "MEJORAMIENTO Y AMPLIACION DEL SERVICIO DE EDUCACION PRIMARIA EN I.E. 21012   DISTRITO DE BARRANCA DE LA PROVINCIA DE BARRANCA DEL DEPARTAMENTO DE LIMA",
+                "PROVINCIA": "BARRANCA"
+            },
+            {
+                "MONTO INVERSI\u00d3N": 155760,
+                "NOMBRE DE LA PROPUESTA": "MEJORAMIENTO Y AMPLIACION DEL SERVICIO DE PROVISI\u00d3N DE AGUA PARA RIEGO EN SISTEMA DE RIEGO  DE CENTRO POBLADO SAN PEDRO DISTRITO DE SAN PEDRO DE HUANCAYRE DE LA PROVINCIA DE HUAROCHIRI DEL DEPARTAMENTO DE LIMA",
+                "PROVINCIA": "HUAROCHIRI"
+            },
+            {
+                "MONTO INVERSI\u00d3N": 202617.8,
+                "NOMBRE DE LA PROPUESTA": "MEJORAMIENTO Y AMPLIACION DEL SERVICIO DE ATENCI\u00d3N DE SALUD B\u00c1SICOS EN PATIVILCA  DE CENTRO POBLADO PATIVILCA DISTRITO DE PATIVILCA DE LA PROVINCIA DE BARRANCA DEL DEPARTAMENTO DE LIMA",
+                "PROVINCIA": "BARRANCA"
+            },
+            {
+                "MONTO INVERSI\u00d3N": 4209031.13,
+                "NOMBRE DE LA PROPUESTA": "RENOVACION DE PISTA; EN EL(LA) VIAS LOCALES PRINCIPALES EN LA ZONA URBANA EN EL  DISTRITO DE SAN JUAN DE MIRAFLORES, PROVINCIA LIMA, DEPARTAMENTO LIMA",
+                "PROVINCIA": "LIMA"
+            },
+            {
+                "MONTO INVERSI\u00d3N": 139476,
+                "NOMBRE DE LA PROPUESTA": "MEJORAMIENTO Y AMPLIACION DEL SERVICIO DE PROVISI\u00d3N DE AGUA PARA RIEGO EN LOS SECTORES TAMBO Y CARACOMA   DISTRITO DE HUACHUPAMPA DE LA PROVINCIA DE HUAROCHIRI DEL DEPARTAMENTO DE LIMA",
+                "PROVINCIA": "HUAROCHIRI"
+            }
+        ],
+        "s_finan": [
+            {
+                "MONTO INVERSI\u00d3N": 67118,
+                "NOMBRE DE LA PROPUESTA": "MEJORAMIENTO DEL SERVICIO DE EDUCACION PRIMARIA Y SERVICIO DE EDUCACI\u00d3N SECUNDARIA EN I.E. 20541 SANTA ROSA  DE CENTRO POBLADO CALLAHUANCA DISTRITO DE CALLAHUANCA DE LA PROVINCIA DE HUAROCHIRI DEL DEPARTAMENTO DE LIMA",
+                "PROVINCIA": "HUAROCHIRI"
+            }
+        ],
+        "total": [
+            {
+                "ct": 2,
+                "de": "LIMA",
+                "prov": "BARRANCA"
+            },
+            {
+                "ct": 1,
+                "de": "LIMA",
+                "prov": "HUARAL"
+            },
+            {
+                "ct": 4,
+                "de": "LIMA",
+                "prov": "HUAROCHIRI"
+            },
+            {
+                "ct": 1,
+                "de": "LIMA",
+                "prov": "LIMA"
+            },
+            {
+                "ct": 1,
+                "de": "LIMA",
+                "prov": "OYON"
+            }
+        ]
+    },
+    "status": 1
+}

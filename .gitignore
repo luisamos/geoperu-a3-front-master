@@ -1,0 +1,9 @@
+# Distribuciones
+Distribuciones/*
+www-data/*
+*.gz
+.nuxt
+node_modules
+dist
+package-lock.json
+.env

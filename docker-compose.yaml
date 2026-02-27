@@ -1,0 +1,23 @@
+version: '3'
+services:
+  geoeperu-a3-front:
+    container_name: geoeperu-a3-front
+    restart: always
+    build: 
+      context: .
+      target: development
+      args:
+        - MAP_BASE_URL=https://visor.geoperu.gob.pe/print
+        - MAP_URL=https://visor.geoperu.gob.pe/print/printer/elevation/
+        - REPORTE_URL=https://visor.geoperu.gob.pe/api/a3/consulta_super/readA3.php
+        - REPORTE_CEM_URL=https://visor.geoperu.gob.pe/api/a3/consulta_cem/readA3.php
+        # - REPORTE_URL=http://localhost:8089/consulta_super/readA3.php
+        # - REPORTE_CEM_URL=http://localhost:8089/consulta_cem/readA3.php
+    ports:
+      - "8081:8080"
+    command: sh -c "nuxt"
+    volumes:
+      - .:/app/
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
