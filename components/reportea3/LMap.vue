@@ -1,9 +1,9 @@
 <template>
-  <div :class="$options.name" style="background-color:blue;">
+  <div :class="componentName" style="background-color:blue;">
     <div id="map" @dblclick="zoomo" @click="dialogDownloadMap.open===true"></div>
     <div class="leyenda">
         <div style="width:50%;float:left;">
-            <span class="item" v-if="$store.getters['reporte/tipo'] === 'dist'">
+            <span class="item" v-if="reporteStore.tipo === 'dist'">
                 <table style="width:100%;">
                     <tr>
                         <td style="vertical-align:middle;text-align:left;">
@@ -18,7 +18,7 @@
             </span>
         </div>
         <div style="width:50%;float:left;">
-            <span class="item" v-if="$store.getters['reporte/tipo'] === 'dist'">
+            <span class="item" v-if="reporteStore.tipo === 'dist'">
              <table>
                     <tr>
                         <td style="vertical-align:middle;text-align:left;">
@@ -41,6 +41,7 @@ export default {
   name: "leaflet-map",
   data() {
     return {
+      componentName: 'leaflet-map',
       dialogDownloadMap: false,
       data: null,
       superficie: null,
@@ -51,21 +52,21 @@ export default {
   },
   created() {
     this.data = JSON.stringify(
-      this.$store.getters["reporte/results"].map_json[0].json
+      reporteStore.results.map_json[0].json
     );
     this.superficie = this.$store.getters[
       "reporte/results"
     ].ejecutora[0].superficie;
     this.selected =
-      this.$store.getters["reporte/tipo"] === "prov"
-        ? this.$store.getters["reporte/results"].ejecutora[0].ubigeo.substring(
+      reporteStore.tipo === "prov"
+        ? reporteStore.results.ejecutora[0].ubigeo.substring(
             0,
             4
           )
-        : this.$store.getters["reporte/results"].ejecutora[0].ubigeo;
+        : reporteStore.results.ejecutora[0].ubigeo;
 
     this.densidad =
-      this.$store.getters["reporte/results"].censo2017.filter(
+      reporteStore.results.censo2017.filter(
         obj => obj.cat === "Distrito"
       )[0].pob_total / parseFloat(this.superficie);
   },
@@ -97,8 +98,8 @@ export default {
     //this.getGeo()
     let color, name, capitalColor, nullColor = "#afafaf";
 
-    //console.log(this.$store.getters['reporte/results'].ejecutora[0].ubigeo.substring(4,6))
-    if (this.$store.getters["reporte/tipo"] === "prov") {
+    //console.log(reporteStore.results.ejecutora[0].ubigeo.substring(4,6))
+    if (reporteStore.tipo === "prov") {
       color = "#617ab6";
       name = "Provincia";
       capitalColor = "#4caf50";
@@ -107,7 +108,7 @@ export default {
       name = "Distrito";
       capitalColor = "#4caf50";
     }
-    console.log(this.$store.getters["reporte/tipo"])
+    console.log(reporteStore.tipo)
     let densidad = this.densidad;
     // Instantiate the map
     // Initialize the map and assign it to a variable for later use

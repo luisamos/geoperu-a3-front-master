@@ -92,7 +92,7 @@ export default {
     };
   },
   created() {
-    this.id = "ele" + this._uid;
+    this.id = "ele" + Math.random().toString(36).substr(2, 9);
 
     if (this.legendClass === 0) {
       this.validation = { red: 9.99, yellow: 19.99, green: 100};
@@ -123,10 +123,10 @@ export default {
       return { color: "#FFF", class: "legend-null" };
     },
     highlight(className) {
-      $(".circle-text:not(." + className + ")").css("opacity", "0.2");
+      document.querySelectorAll(".circle-text:not(." + className + ")").forEach(el => el.style.opacity = "0.2");
     },
     downlight() {
-      $(".circle-text").css("opacity", "1");
+      document.querySelectorAll(".circle-text").forEach(el => el.style.opacity = "1");
     }
   },
   mounted() {

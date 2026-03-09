@@ -3,7 +3,7 @@
     <div style="line-height:10px;height:16%;padding-left:15%;padding-right:15%;text-align:center;">
       <span class="chart-title" v-text="title"></span>
     </div>
-    <div style="height:84%;width:100%;" v-if="$store.getters['reporte/tipo']==='dist'">
+    <div style="height:84%;width:100%;" v-if="reporteStore.tipo==='dist'">
     
       <svg
         version="1.1"
@@ -164,8 +164,13 @@
 
 <script>
 import * as SVG from 'svg.js'
+import { useReporteStore } from '~/stores/reporte'
 
 export default {
+  setup() {
+    const reporteStore = useReporteStore()
+    return { reporteStore }
+  },
   props: ["title", "data"],
   data() {
     return {
@@ -175,7 +180,7 @@ export default {
     };
   },
   mounted() {
-    if (this.$store.getters["reporte/tipo"] === "dist") {
+    if (reporteStore.tipo === "dist") {
       this.id = "dist-layer-chart-" + this._uid;
     } else {
       this.id = "prov-layer-chart-" + this._uid;

@@ -1,5 +1,5 @@
 <template>
-  <div :class="$options.name" @dblclick="zoomo"
+  <div :class="componentName" @dblclick="zoomo"
   >
     <div class="cabecera">
       <div class="title">
@@ -11,15 +11,15 @@
       ctitle="Viviendas sin acceso a agua (%)"
       class="chart"
       :colors = colors
-      :distrito="parseFloat(this.$store.getters['reporte/results'].vivienda.filter((obj)=>obj.cat ==='Distrito')[0].pvs_agua_r).toFixed(1)"
-      :provincia="parseFloat(this.$store.getters['reporte/results'].vivienda.filter((obj)=>obj.cat ==='Provincia')[0].pvs_agua_r).toFixed(1)"
-      :departamento="parseFloat(this.$store.getters['reporte/results'].vivienda.filter((obj)=>obj.cat ==='Departamento')[0].pvs_agua_r).toFixed(1)"
-      :nacional="parseFloat(this.$store.getters['reporte/results'].vivienda.filter((obj)=>obj.cat ==='Nacional')[0].pvs_agua_r).toFixed(1)"
+      :distrito="parseFloat(reporteStore.results.vivienda.filter((obj)=>obj.cat ==='Distrito')[0].pvs_agua_r).toFixed(1)"
+      :provincia="parseFloat(reporteStore.results.vivienda.filter((obj)=>obj.cat ==='Provincia')[0].pvs_agua_r).toFixed(1)"
+      :departamento="parseFloat(reporteStore.results.vivienda.filter((obj)=>obj.cat ==='Departamento')[0].pvs_agua_r).toFixed(1)"
+      :nacional="parseFloat(reporteStore.results.vivienda.filter((obj)=>obj.cat ==='Nacional')[0].pvs_agua_r).toFixed(1)"
 
-      :ndistrito="this.formatNumber(parseFloat(this.$store.getters['reporte/results'].vivienda.filter((obj)=>obj.cat ==='Distrito')[0].n_va),0)"
-      :nprovincia="this.formatNumber(parseFloat(this.$store.getters['reporte/results'].vivienda.filter((obj)=>obj.cat ==='Provincia')[0].n_va),0)"
-      :ndepartamento="this.formatNumber(parseFloat(this.$store.getters['reporte/results'].vivienda.filter((obj)=>obj.cat ==='Departamento')[0].n_va),0)"
-      :nnacional="this.formatNumber(parseFloat(this.$store.getters['reporte/results'].vivienda.filter((obj)=>obj.cat ==='Nacional')[0].n_va),0)"
+      :ndistrito="this.formatNumber(parseFloat(reporteStore.results.vivienda.filter((obj)=>obj.cat ==='Distrito')[0].n_va),0)"
+      :nprovincia="this.formatNumber(parseFloat(reporteStore.results.vivienda.filter((obj)=>obj.cat ==='Provincia')[0].n_va),0)"
+      :ndepartamento="this.formatNumber(parseFloat(reporteStore.results.vivienda.filter((obj)=>obj.cat ==='Departamento')[0].n_va),0)"
+      :nnacional="this.formatNumber(parseFloat(reporteStore.results.vivienda.filter((obj)=>obj.cat ==='Nacional')[0].n_va),0)"
       
     />
     <!--div style="float:left;width:0.5%;height:78%;"></div-->
@@ -27,15 +27,15 @@
       ctitle="Viviendas sin acceso a saneamiento (%)"
       class="chart"
       :colors = colors
-      :distrito="parseFloat(this.$store.getters['reporte/results'].vivienda.filter((obj)=>obj.cat ==='Distrito')[0].pvs_sh).toFixed(1)"
-      :provincia="parseFloat(this.$store.getters['reporte/results'].vivienda.filter((obj)=>obj.cat ==='Provincia')[0].pvs_sh).toFixed(1)"
-      :departamento="parseFloat(this.$store.getters['reporte/results'].vivienda.filter((obj)=>obj.cat ==='Departamento')[0].pvs_sh).toFixed(1)"
-      :nacional="parseFloat(this.$store.getters['reporte/results'].vivienda.filter((obj)=>obj.cat ==='Nacional')[0].pvs_sh).toFixed(1)"
+      :distrito="parseFloat(reporteStore.results.vivienda.filter((obj)=>obj.cat ==='Distrito')[0].pvs_sh).toFixed(1)"
+      :provincia="parseFloat(reporteStore.results.vivienda.filter((obj)=>obj.cat ==='Provincia')[0].pvs_sh).toFixed(1)"
+      :departamento="parseFloat(reporteStore.results.vivienda.filter((obj)=>obj.cat ==='Departamento')[0].pvs_sh).toFixed(1)"
+      :nacional="parseFloat(reporteStore.results.vivienda.filter((obj)=>obj.cat ==='Nacional')[0].pvs_sh).toFixed(1)"
 
-      :ndistrito="this.formatNumber(parseFloat(this.$store.getters['reporte/results'].vivienda.filter((obj)=>obj.cat ==='Distrito')[0].n_vs),0)"
-      :nprovincia="this.formatNumber(parseFloat(this.$store.getters['reporte/results'].vivienda.filter((obj)=>obj.cat ==='Provincia')[0].n_vs),0)"
-      :ndepartamento="this.formatNumber(parseFloat(this.$store.getters['reporte/results'].vivienda.filter((obj)=>obj.cat ==='Departamento')[0].n_vs),0)"
-      :nnacional="this.formatNumber(parseFloat(this.$store.getters['reporte/results'].vivienda.filter((obj)=>obj.cat ==='Nacional')[0].n_vs),0)"
+      :ndistrito="this.formatNumber(parseFloat(reporteStore.results.vivienda.filter((obj)=>obj.cat ==='Distrito')[0].n_vs),0)"
+      :nprovincia="this.formatNumber(parseFloat(reporteStore.results.vivienda.filter((obj)=>obj.cat ==='Provincia')[0].n_vs),0)"
+      :ndepartamento="this.formatNumber(parseFloat(reporteStore.results.vivienda.filter((obj)=>obj.cat ==='Departamento')[0].n_vs),0)"
+      :nnacional="this.formatNumber(parseFloat(reporteStore.results.vivienda.filter((obj)=>obj.cat ==='Nacional')[0].n_vs),0)"
     />
 
     <Fuente 
@@ -51,12 +51,18 @@ import Leyenda from "~/components/reportea3/Leyenda.vue";
 import Fuente from '~/components/reportea3/Fuente.vue';
 
 import numberFormat from '~/mixins/numberFormat.js';
+import { useReporteStore } from '~/stores/reporte'
 
 export default {
+  setup() {
+    const reporteStore = useReporteStore()
+    return { reporteStore }
+  },
   name: 'agua-saneamiento',
   mixins:[numberFormat],
   data () {
     return {
+      componentName: 'agua-saneamiento',
       colors: {
         'nacional': '#ff6356',
         'departamento': '#247666',
@@ -118,45 +124,45 @@ export default {
 
 <style scoped>
 
-/deep/ .chart .label-nacional b {  
+:deep(.chart .label-nacional b) {  
   color: #ff6356 !important;
 }
 
-/deep/ .chart .label-departamento b {  
+:deep(.chart .label-departamento b) {  
   color: #247666 !important;
 }
 
-/deep/ .chart .label-provincia b {  
+:deep(.chart .label-provincia b) {  
   color: #3dac96 !important;
 }
 
-/deep/ .chart .label-distrito b {  
+:deep(.chart .label-distrito b) {  
   color: #52dcc2 !important;
 }
 
 
 /* Leyenda */
-/deep/ .leyenda .item {
+:deep(.leyenda .item) {
   font-size: 7px;
 }
-/deep/ .leyenda .item .legend-circle {
+:deep(.leyenda .item .legend-circle) {
   width: 7px;
   height: 7px;
 }
 
-/deep/ .leyenda .item .legend-circle-nacional {
+:deep(.leyenda .item .legend-circle-nacional) {
   background-color: #ff6356 !important;
 }
 
-/deep/ .leyenda .item .legend-circle-departamento {
+:deep(.leyenda .item .legend-circle-departamento) {
   background-color: #247666 !important;
 }
 
-/deep/ .leyenda .item .legend-circle-provincia {
+:deep(.leyenda .item .legend-circle-provincia) {
   background-color: #3dac96 !important;
 }
 
-/deep/ .leyenda .item .legend-circle-distrito {
+:deep(.leyenda .item .legend-circle-distrito) {
   background-color: #52dcc2 !important;
 }
 </style>

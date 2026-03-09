@@ -9,23 +9,23 @@
       <Leyenda order="desc" style="width:100%;height:60%;" />
     </div>
     <CircularChartPorcent
-      v-if="this.$store.getters['reporte/results'].pobreza.filter((obj)=>obj.cat ==='Distrito')[0] != undefined"
+      v-if="reporteStore.results.pobreza.filter((obj)=>obj.cat ==='Distrito')[0] != undefined"
       ctitle="Incidencia (%)"
       class="sub-container"      
       :colors = colors
-      :distrito="getData(this.$store.getters['reporte/results'].pobreza.filter((obj)=>obj.cat ==='Distrito'), 'prom_itv')"
-      :provincia="getData(this.$store.getters['reporte/results'].pobreza.filter((obj)=>obj.cat ==='Provincia'), 'prom_itv')"
-      :departamento="getData(this.$store.getters['reporte/results'].pobreza.filter((obj)=>obj.cat ==='Departamento'), 'prom_itv')"
+      :distrito="getData(reporteStore.results.pobreza.filter((obj)=>obj.cat ==='Distrito'), 'prom_itv')"
+      :provincia="getData(reporteStore.results.pobreza.filter((obj)=>obj.cat ==='Provincia'), 'prom_itv')"
+      :departamento="getData(reporteStore.results.pobreza.filter((obj)=>obj.cat ==='Departamento'), 'prom_itv')"
       :nacional="'21.7'"
 
-      :ndistrito="getData(this.$store.getters['reporte/results'].pobreza.filter((obj)=>obj.cat ==='Distrito'), 'prom_itv')"
-      :nprovincia="getData(this.$store.getters['reporte/results'].pobreza.filter((obj)=>obj.cat ==='Provincia'), 'prom_itv')"
-      :ndepartamento="getData(this.$store.getters['reporte/results'].pobreza.filter((obj)=>obj.cat ==='Departamento'), 'prom_itv')"
+      :ndistrito="getData(reporteStore.results.pobreza.filter((obj)=>obj.cat ==='Distrito'), 'prom_itv')"
+      :nprovincia="getData(reporteStore.results.pobreza.filter((obj)=>obj.cat ==='Provincia'), 'prom_itv')"
+      :ndepartamento="getData(reporteStore.results.pobreza.filter((obj)=>obj.cat ==='Departamento'), 'prom_itv')"
       :nnacional="'21.7'"
     />
 
     <div v-else class="sub-container" style="padding:5%;text-align:justify;font-size:15px;font-weight:500">
-      Distrito que no presenta datos del <b>Mapa de Pobreza 2013</b>, debido a su creación posterior a la elaboración de dicho estudio. El distrito se creó mediante <b>LEY N° <span v-text="this.nDist.filter((obj)=>{ return this.$store.getters['reporte/codigo'] === obj.ubigeo})[0].ley"></span></b> de fecha <b v-text="this.nDist.filter((obj)=>{ return this.$store.getters['reporte/codigo'] === obj.ubigeo})[0].fecha">07/11/2015</b>
+      Distrito que no presenta datos del <b>Mapa de Pobreza 2013</b>, debido a su creación posterior a la elaboración de dicho estudio. El distrito se creó mediante <b>LEY N° <span v-text="this.nDist.filter((obj)=>{ return reporteStore.codigo === obj.ubigeo})[0].ley"></span></b> de fecha <b v-text="this.nDist.filter((obj)=>{ return reporteStore.codigo === obj.ubigeo})[0].fecha">07/11/2015</b>
     </div>
 
     <div style="height:28%">
@@ -40,9 +40,14 @@
 import CircularChartPorcent from "~/components/reportea3/CircularChartPorcent.vue";
 import Leyenda from "~/components/reportea3/Leyenda.vue";
 import numberFormat from '~/mixins/numberFormat.js'
-import dist from "~/static/distritosNuevos.js"
+import dist from "~/public/distritosNuevos.js"
+import { useReporteStore } from '~/stores/reporte'
 
 export default {
+  setup() {
+    const reporteStore = useReporteStore()
+    return { reporteStore }
+  },
   mixins: [numberFormat],
   data: () => {
     return {
@@ -100,19 +105,19 @@ export default {
 
 
 
-/deep/ .sub-container .label-nacional b {
+:deep(.sub-container .label-nacional b) {
   color: #ff6356 !important;
 }
 
-/deep/ .sub-container .label-departamento b {
+:deep(.sub-container .label-departamento b) {
   color: #421e00 !important;
 }
 
-/deep/ .sub-container .label-provincia b {
+:deep(.sub-container .label-provincia b) {
   color: #834300 !important;
 }
 
-/deep/ .sub-container .label-distrito b {
+:deep(.sub-container .label-distrito b) {
   color: #bc6600 !important;
 }
 
@@ -121,27 +126,27 @@ export default {
 
 
 /* Leyenda */
-/deep/ .legend {
+:deep(.legend) {
   font-size: 7px;
 }
-/deep/ .legend .legend-circle {
+:deep(.legend .legend-circle) {
   width: 7px;
   height: 7px;
 }
 
-/deep/ .legend .legend-circle-nacional {
+:deep(.legend .legend-circle-nacional) {
   background-color: #ff6356 !important;
 }
 
-/deep/ .legend .legend-circle-departamento {
+:deep(.legend .legend-circle-departamento) {
   background-color: #421e00 !important;
 }
 
-/deep/ .legend .legend-circle-provincia {
+:deep(.legend .legend-circle-provincia) {
   background-color: #834300 !important;
 }
 
-/deep/ .legend .legend-circle-distrito {
+:deep(.legend .legend-circle-distrito) {
   background-color: #bc6600 !important;
 }
 

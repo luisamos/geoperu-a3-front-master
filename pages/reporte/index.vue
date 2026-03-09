@@ -1,14 +1,7 @@
 <template>
-   <nuxt />
+  <div></div>
 </template>
 
-<script>
-export default {
-    layout:'reporte',
-     mounted() {}
-}
+<script setup>
+definePageMeta({ layout: 'reporte' })
 </script>
-
-<template>
-    
-</template>

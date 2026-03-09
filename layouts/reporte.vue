@@ -1,23 +1,29 @@
 <template>
   <div>
-    <LoadingOverlay v-if="$store.getters['Loading/isOverlay']" v-show="$store.getters['Loading/isLoading']" :label="$store.getters['Loading/text']" />
-    <LoadingNotif v-if="$store.getters['Loading/isNotif']" v-show="$store.getters['Loading/isLoading']" :label="$store.getters['Loading/text']" />
-    <no-ssr>
+    <LoadingOverlay v-if="loadingStore.isOverlay" v-show="loadingStore.isLoading" :label="loadingStore.text" />
+    <LoadingNotif v-if="loadingStore.isNotif" v-show="loadingStore.isLoading" :label="loadingStore.text" />
+    <ClientOnly>
       <AppState />
-    </no-ssr>
-    <nuxt />
+    </ClientOnly>
+    <slot />
   </div>
 </template>
 
 <script>
-import AppState from "~/components/AppState.vue";
-import LoadingOverlay from "~/components/LoadingOverlay.vue";
-import LoadingNotif from "~/components/LoadingNotif.vue";
+import { useLoadingStore } from '~/stores/loading'
+import AppState from '~/components/AppState.vue'
+import LoadingOverlay from '~/components/LoadingOverlay.vue'
+import LoadingNotif from '~/components/LoadingNotif.vue'
+
 export default {
   components: {
     AppState,
     LoadingOverlay,
     LoadingNotif
+  },
+  setup() {
+    const loadingStore = useLoadingStore()
+    return { loadingStore }
   }
 }
 </script>
@@ -37,6 +43,3 @@ export default {
   }
 }
 </style>
-
-
-

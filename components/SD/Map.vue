@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Highcharts from "~/plugins/highmaps";
+import Highcharts from "~/lib/highmaps.js";
 
 export default {
   name: "Map",

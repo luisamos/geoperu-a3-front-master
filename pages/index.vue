@@ -1,14 +1,9 @@
 <template>
-   <nuxt />
+  <div>
+    <p>GeoPeru - Página principal</p>
+  </div>
 </template>
 
-<script>
-export default {
-    layout:'reporte',
-     mounted() {}
-}
+<script setup>
+definePageMeta({ layout: 'reporte' })
 </script>
-
-<template>
-    
-</template>

@@ -1,5 +1,5 @@
 <template>
-  <div :class="$options.name" @dblclick="zoomo"
+  <div :class="componentName" @dblclick="zoomo"
   >
     <div class="cabecera">
       <div class="title">
@@ -11,30 +11,30 @@
     <CircularChart
       ctitle="Hogares sin internet (%)"
       :colors = colors
-      :distrito="parseFloat(this.$store.getters['reporte/results'].brecha.filter((obj)=>obj.cat ==='Distrito')[0].phs_inter).toFixed(1)"
-      :provincia="parseFloat(this.$store.getters['reporte/results'].brecha.filter((obj)=>obj.cat ==='Provincia')[0].phs_inter).toFixed(1)"
-      :departamento="parseFloat(this.$store.getters['reporte/results'].brecha.filter((obj)=>obj.cat ==='Departamento')[0].phs_inter).toFixed(1)"
-      :nacional="parseFloat(this.$store.getters['reporte/results'].brecha.filter((obj)=>obj.cat ==='Nacional')[0].phs_inter).toFixed(1)"
+      :distrito="parseFloat(reporteStore.results.brecha.filter((obj)=>obj.cat ==='Distrito')[0].phs_inter).toFixed(1)"
+      :provincia="parseFloat(reporteStore.results.brecha.filter((obj)=>obj.cat ==='Provincia')[0].phs_inter).toFixed(1)"
+      :departamento="parseFloat(reporteStore.results.brecha.filter((obj)=>obj.cat ==='Departamento')[0].phs_inter).toFixed(1)"
+      :nacional="parseFloat(reporteStore.results.brecha.filter((obj)=>obj.cat ==='Nacional')[0].phs_inter).toFixed(1)"
 
-      :ndistrito="formatNumber(this.$store.getters['reporte/results'].brecha.filter((obj)=>obj.cat ==='Distrito')[0].hs_inter,0)"
-      :nprovincia="formatNumber(this.$store.getters['reporte/results'].brecha.filter((obj)=>obj.cat ==='Provincia')[0].hs_inter,0)"
-      :ndepartamento="formatNumber(this.$store.getters['reporte/results'].brecha.filter((obj)=>obj.cat ==='Departamento')[0].hs_inter,0)"
-      :nnacional="formatNumber(this.$store.getters['reporte/results'].brecha.filter((obj)=>obj.cat ==='Nacional')[0].hs_inter,0)"
+      :ndistrito="formatNumber(reporteStore.results.brecha.filter((obj)=>obj.cat ==='Distrito')[0].hs_inter,0)"
+      :nprovincia="formatNumber(reporteStore.results.brecha.filter((obj)=>obj.cat ==='Provincia')[0].hs_inter,0)"
+      :ndepartamento="formatNumber(reporteStore.results.brecha.filter((obj)=>obj.cat ==='Departamento')[0].hs_inter,0)"
+      :nnacional="formatNumber(reporteStore.results.brecha.filter((obj)=>obj.cat ==='Nacional')[0].hs_inter,0)"
       class="chart"
     />
     <div style="float:left;width:0.5%;height:82%;"></div>
     <CircularChart
       ctitle="Hogares sin teléfono celular (%)"
       :colors = colors
-      :distrito="parseFloat(this.$store.getters['reporte/results'].brecha.filter((obj)=>obj.cat ==='Distrito')[0].phs_tcelu).toFixed(1)"
-      :provincia="parseFloat(this.$store.getters['reporte/results'].brecha.filter((obj)=>obj.cat ==='Provincia')[0].phs_tcelu).toFixed(1)"
-      :departamento="parseFloat(this.$store.getters['reporte/results'].brecha.filter((obj)=>obj.cat ==='Departamento')[0].phs_tcelu).toFixed(1)"
-      :nacional="parseFloat(this.$store.getters['reporte/results'].brecha.filter((obj)=>obj.cat ==='Nacional')[0].phs_tcelu).toFixed(1)"
+      :distrito="parseFloat(reporteStore.results.brecha.filter((obj)=>obj.cat ==='Distrito')[0].phs_tcelu).toFixed(1)"
+      :provincia="parseFloat(reporteStore.results.brecha.filter((obj)=>obj.cat ==='Provincia')[0].phs_tcelu).toFixed(1)"
+      :departamento="parseFloat(reporteStore.results.brecha.filter((obj)=>obj.cat ==='Departamento')[0].phs_tcelu).toFixed(1)"
+      :nacional="parseFloat(reporteStore.results.brecha.filter((obj)=>obj.cat ==='Nacional')[0].phs_tcelu).toFixed(1)"
 
-      :ndistrito="formatNumber(this.$store.getters['reporte/results'].brecha.filter((obj)=>obj.cat ==='Distrito')[0].hs_tcelu,0)"
-      :nprovincia="formatNumber(this.$store.getters['reporte/results'].brecha.filter((obj)=>obj.cat ==='Provincia')[0].hs_tcelu,0)"
-      :ndepartamento="formatNumber(this.$store.getters['reporte/results'].brecha.filter((obj)=>obj.cat ==='Departamento')[0].hs_tcelu,0)"
-      :nnacional="formatNumber(this.$store.getters['reporte/results'].brecha.filter((obj)=>obj.cat ==='Nacional')[0].hs_tcelu,0)"
+      :ndistrito="formatNumber(reporteStore.results.brecha.filter((obj)=>obj.cat ==='Distrito')[0].hs_tcelu,0)"
+      :nprovincia="formatNumber(reporteStore.results.brecha.filter((obj)=>obj.cat ==='Provincia')[0].hs_tcelu,0)"
+      :ndepartamento="formatNumber(reporteStore.results.brecha.filter((obj)=>obj.cat ==='Departamento')[0].hs_tcelu,0)"
+      :nnacional="formatNumber(reporteStore.results.brecha.filter((obj)=>obj.cat ==='Nacional')[0].hs_tcelu,0)"
       class="chart"
     />
     <div style="float:left;width:0.5%;height:82%;"></div>
@@ -42,15 +42,15 @@
       ctitle="Hogares sin pc/laptop/tablet (%)"
       class="chart"
       :colors = colors
-      :distrito="parseFloat(this.$store.getters['reporte/results'].brecha.filter((obj)=>obj.cat ==='Distrito')[0].phs_pclptb).toFixed(1)"
-      :provincia="parseFloat(this.$store.getters['reporte/results'].brecha.filter((obj)=>obj.cat ==='Provincia')[0].phs_pclptb).toFixed(1)"
-      :departamento="parseFloat(this.$store.getters['reporte/results'].brecha.filter((obj)=>obj.cat ==='Departamento')[0].phs_pclptb).toFixed(1)"
-      :nacional="parseFloat(this.$store.getters['reporte/results'].brecha.filter((obj)=>obj.cat ==='Nacional')[0].phs_pclptb).toFixed(1)"
+      :distrito="parseFloat(reporteStore.results.brecha.filter((obj)=>obj.cat ==='Distrito')[0].phs_pclptb).toFixed(1)"
+      :provincia="parseFloat(reporteStore.results.brecha.filter((obj)=>obj.cat ==='Provincia')[0].phs_pclptb).toFixed(1)"
+      :departamento="parseFloat(reporteStore.results.brecha.filter((obj)=>obj.cat ==='Departamento')[0].phs_pclptb).toFixed(1)"
+      :nacional="parseFloat(reporteStore.results.brecha.filter((obj)=>obj.cat ==='Nacional')[0].phs_pclptb).toFixed(1)"
 
-      :ndistrito="formatNumber(this.$store.getters['reporte/results'].brecha.filter((obj)=>obj.cat ==='Distrito')[0].hs_pclptb,0)"
-      :nprovincia="formatNumber(this.$store.getters['reporte/results'].brecha.filter((obj)=>obj.cat ==='Provincia')[0].hs_pclptb,0)"
-      :ndepartamento="formatNumber(this.$store.getters['reporte/results'].brecha.filter((obj)=>obj.cat ==='Departamento')[0].hs_pclptb,0)"
-      :nnacional="formatNumber(this.$store.getters['reporte/results'].brecha.filter((obj)=>obj.cat ==='Nacional')[0].hs_pclptb,0)"
+      :ndistrito="formatNumber(reporteStore.results.brecha.filter((obj)=>obj.cat ==='Distrito')[0].hs_pclptb,0)"
+      :nprovincia="formatNumber(reporteStore.results.brecha.filter((obj)=>obj.cat ==='Provincia')[0].hs_pclptb,0)"
+      :ndepartamento="formatNumber(reporteStore.results.brecha.filter((obj)=>obj.cat ==='Departamento')[0].hs_pclptb,0)"
+      :nnacional="formatNumber(reporteStore.results.brecha.filter((obj)=>obj.cat ==='Nacional')[0].hs_pclptb,0)"
     />
     </div>
     
@@ -68,12 +68,18 @@ import Leyenda from "~/components/reportea3/Leyenda.vue";
 import Fuente from "~/components/reportea3/Fuente.vue";
 
 import numberFormat from '~/mixins/numberFormat.js';
+import { useReporteStore } from '~/stores/reporte'
 
 export default {
+  setup() {
+    const reporteStore = useReporteStore()
+    return { reporteStore }
+  },
   name: 'brecha-digital',
   mixins:[numberFormat],
   data() {
     return {
+      componentName: 'brecha-digital',
       colors: {
         'nacional':'#ff6356',
         'departamento':'#4e0146',
@@ -137,40 +143,40 @@ export default {
 }
 
 
-/deep/ .chart .label-nacional b {  
+:deep(.chart .label-nacional b) {  
   color: #ff6356 !important;
 }
 
-/deep/ .chart .label-departamento b {  
+:deep(.chart .label-departamento b) {  
   color: #4e0146 !important;
 }
 
-/deep/ .chart .label-provincia b {  
+:deep(.chart .label-provincia b) {  
   color: #750280 !important;
 }
 
-/deep/ .chart .label-distrito b {  
+:deep(.chart .label-distrito b) {  
   color: #a40fd3 !important;
 }
 
 /* Leyenda */
-/deep/ .leyenda .item {
+:deep(.leyenda .item) {
   font-size: 7px;
 }
-/deep/ .leyenda .item .legend-circle {
+:deep(.leyenda .item .legend-circle) {
   width: 7px;
   height: 7px;
 }
 
-/deep/ .leyenda .item .legend-circle-nacional {
+:deep(.leyenda .item .legend-circle-nacional) {
   background-color: #ff6356 !important;
 }
 
-/deep/ .leyenda .item .legend-circle-departamento {
+:deep(.leyenda .item .legend-circle-departamento) {
   background-color: #4e0146 !important;
 }
 
-/deep/ .leyenda .item .legend-circle-provincia {
+:deep(.leyenda .item .legend-circle-provincia) {
   background-color: #750280 !important;
 }
 

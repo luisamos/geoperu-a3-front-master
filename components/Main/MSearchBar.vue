@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import data from '~/static/ubigeo.js'
+import data from '~/public/ubigeo.js'
 import Fuse from 'fuse.js'
 import gaEvent from '~/mixins/GoogleAnalytics'
 

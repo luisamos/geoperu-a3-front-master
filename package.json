@@ -1,41 +1,29 @@
 {
   "name": "GeoPeru",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "GEOPERÚ es la Plataforma Digital Geográfica del Estado Peruano",
   "author": "jlpa",
   "private": true,
-  "engines": {
-    "node": "12.18.3"
-  },
+  "type": "module",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
+    "dev": "nuxt dev",
     "build": "nuxt build",
-    "start": "cross-env NODE_ENV=production node server/index.js",
+    "start": "node .output/server/index.mjs",
     "generate": "nuxt generate",
-    "heroku-postbuild": "npm run build"
+    "preview": "nuxt preview"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.12.*",
-    "@nuxtjs/google-analytics": "^2.4.*",
-    "canvg": "^2.0.0",
-    "cross-env": "^7.0.*",
-    "express": "^4.16.*",
-    "fs": "0.0.1-security",
     "highcharts": "^8.1.2",
-    "html2canvas": "^1.0.0-rc.7",
-    "jspdf": "^1.*",
-    "leaflet": "^1.7.1",
-    "nuxt": "^2.15.8",
-    "print-js": "^1.0.*",
-    "svg.js": "^2.7.1",
-    "typeface-montserrat": "0.0.54",
-    "vue-js-modal": "^2.0.0-rc.6"
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.1",
+    "leaflet": "^1.9.4",
+    "print-js": "^1.6.0",
+    "svg.js": "^2.7.1"
   },
   "devDependencies": {
-    "fibers": "^5.0.0",
-    "nodemon": "^2.0.4",
-    "sass": "^1.29.0",
-    "sass-loader": "^10.1.0",
-    "terser-webpack-plugin": "^4.1.0"
+    "@pinia/nuxt": "^0.5.1",
+    "nuxt": "^3.15.0",
+    "pinia": "^2.1.7",
+    "sass": "^1.69.0"
   }
 }

@@ -1,11 +1,11 @@
 <template>
   
     <div style="height:100%;width:100%;text-align:left;">
-      <div style="text-align:center;min-height:8%;line-height:17px;display:table;" v-if="this.$store.getters['reporte/results'].ejecutora[0].nombre.length >= 80">
+      <div style="text-align:center;min-height:8%;line-height:17px;display:table;" v-if="reporteStore.results.ejecutora[0].nombre.length >= 80">
         <div style="display:table-cell;vertical-align: bottom;text-align:center;">
             <div style="text-align:center;width:100%;height:100%">
                 
-                <span class="title" style="line-heigth:5px;" v-text="this.ucwords(this.$store.getters['reporte/results'].ejecutora[0].nombre,true).replace(/De/g,'de')"></span>
+                <span class="title" style="line-heigth:5px;" v-text="this.ucwords(reporteStore.results.ejecutora[0].nombre,true).replace(/De/g,'de')"></span>
                 <br>
                 <span class="subtitle">Ejecución presupuestal por fuente de financiamiento (S/)</span>
             </div>
@@ -17,7 +17,7 @@
         <div style="vertical-align: bottom;text-align:center;">
             
                 
-                <span class="title"  v-text="this.ucwords(this.$store.getters['reporte/results'].ejecutora[0].nombre,true).replace(/De/g,'de')"></span>
+                <span class="title"  v-text="this.ucwords(reporteStore.results.ejecutora[0].nombre,true).replace(/De/g,'de')"></span>
                 <br>
                 <span class="subtitle">Ejecución presupuestal por fuentes de financiamiento (S/)</span>
             
@@ -53,22 +53,22 @@
                 <tr class="table-row">
                     <td class="table-subtitle" style="font-weight:700;font-size:18px;">TOTAL</td>
                     <td>
-                        <div class="strong-box pad text-center pull-right" style="font-weight:600;font-size:13px;" v-text="formatNumber( $store.getters['reporte/results'].fuente_financiamiento.filter((obj)=>(obj.anioeje==='2021')).reduce(function(prevVal, elem) {  return prevVal + (!isNaN(parseFloat(elem.pim))&&elem.pim!==null ? parseFloat(elem.pim) : 0) }, 0) , 0)"></div>
+                        <div class="strong-box pad text-center pull-right" style="font-weight:600;font-size:13px;" v-text="formatNumber( reporteStore.results.fuente_financiamiento.filter((obj)=>(obj.anioeje==='2021')).reduce(function(prevVal, elem) {  return prevVal + (!isNaN(parseFloat(elem.pim))&&elem.pim!==null ? parseFloat(elem.pim) : 0) }, 0) , 0)"></div>
                     </td>
                     <td>
-                        <div class="strong-box pad text-center pull-left" style="font-weight:600;font-size:13px;" v-text="formatNumber( $store.getters['reporte/results'].fuente_financiamiento.filter((obj)=>(obj.anioeje==='2021')).reduce(function(prevVal, elem) {  return prevVal + (!isNaN(parseFloat(elem.dev))&&elem.pim!==null ? parseFloat(elem.dev) : 0) }, 0) , 0)"></div>
+                        <div class="strong-box pad text-center pull-left" style="font-weight:600;font-size:13px;" v-text="formatNumber( reporteStore.results.fuente_financiamiento.filter((obj)=>(obj.anioeje==='2021')).reduce(function(prevVal, elem) {  return prevVal + (!isNaN(parseFloat(elem.dev))&&elem.pim!==null ? parseFloat(elem.dev) : 0) }, 0) , 0)"></div>
                     </td>
                     <td>
-                        <div class="light-box pad text-center pull-right" style="font-weight:600;font-size:13px;" v-text="formatNumber( $store.getters['reporte/results'].fuente_financiamiento.filter((obj)=>(obj.anioeje==='2022')).reduce(function(prevVal, elem) {  return prevVal + (!isNaN(parseFloat(elem.pim))&&elem.pim!==null ? parseFloat(elem.pim) : 0) }, 0) , 0)"></div>
+                        <div class="light-box pad text-center pull-right" style="font-weight:600;font-size:13px;" v-text="formatNumber( reporteStore.results.fuente_financiamiento.filter((obj)=>(obj.anioeje==='2022')).reduce(function(prevVal, elem) {  return prevVal + (!isNaN(parseFloat(elem.pim))&&elem.pim!==null ? parseFloat(elem.pim) : 0) }, 0) , 0)"></div>
                     </td>
                     <td>
-                        <div class="light-box pad text-center pull-left" style="font-weight:600;font-size:13px;" v-text="formatNumber( $store.getters['reporte/results'].fuente_financiamiento.filter((obj)=>(obj.anioeje==='2022')).reduce(function(prevVal, elem) {  return prevVal + (!isNaN(parseFloat(elem.dev))&&elem.pim!==null ? parseFloat(elem.dev) : 0) }, 0) , 0)"></div>
+                        <div class="light-box pad text-center pull-left" style="font-weight:600;font-size:13px;" v-text="formatNumber( reporteStore.results.fuente_financiamiento.filter((obj)=>(obj.anioeje==='2022')).reduce(function(prevVal, elem) {  return prevVal + (!isNaN(parseFloat(elem.dev))&&elem.pim!==null ? parseFloat(elem.dev) : 0) }, 0) , 0)"></div>
                     </td>
                     <td>
-                        <div class="strong-box pad text-center pull-right" style="font-weight:600;font-size:13px;" v-text="formatNumber( $store.getters['reporte/results'].fuente_financiamiento.filter((obj)=>(obj.anioeje==='2023')).reduce(function(prevVal, elem) {  return prevVal + (!isNaN(parseFloat(elem.pim))&&elem.pim!==null ? parseFloat(elem.pim) : 0) }, 0) , 0)"></div>
+                        <div class="strong-box pad text-center pull-right" style="font-weight:600;font-size:13px;" v-text="formatNumber( reporteStore.results.fuente_financiamiento.filter((obj)=>(obj.anioeje==='2023')).reduce(function(prevVal, elem) {  return prevVal + (!isNaN(parseFloat(elem.pim))&&elem.pim!==null ? parseFloat(elem.pim) : 0) }, 0) , 0)"></div>
                     </td>
                     <td>
-                        <div class="strong-box pad text-center pull-left" style="font-weight:600;font-size:13px;" v-text="formatNumber( $store.getters['reporte/results'].fuente_financiamiento.filter((obj)=>(obj.anioeje==='2023')).reduce(function(prevVal, elem) {  return prevVal + (!isNaN(parseFloat(elem.dev))&&elem.pim!==null ? parseFloat(elem.dev) : 0) }, 0) , 0)"></div>
+                        <div class="strong-box pad text-center pull-left" style="font-weight:600;font-size:13px;" v-text="formatNumber( reporteStore.results.fuente_financiamiento.filter((obj)=>(obj.anioeje==='2023')).reduce(function(prevVal, elem) {  return prevVal + (!isNaN(parseFloat(elem.dev))&&elem.pim!==null ? parseFloat(elem.dev) : 0) }, 0) , 0)"></div>
                     </td>
                 </tr>
                 
@@ -247,8 +247,8 @@
             </tbody>
         </table>
         
-        <Fuente style="height:3%;" :label="`Fuente: MEF - Consulta Amigable, actualización al <strong> ${$store.getters['reporte/results'].mef[0].fecha} </strong>`" />
-        <!--span class="fuente">Fuente: MEF - Consulta Amigable, actualización al <span v-text="$store.getters['reporte/results'].mef[0].fecha"></span></span-->     
+        <Fuente style="height:3%;" :label="`Fuente: MEF - Consulta Amigable, actualización al <strong> ${reporteStore.results.mef[0].fecha} </strong>`" />
+        <!--span class="fuente">Fuente: MEF - Consulta Amigable, actualización al <span v-text="reporteStore.results.mef[0].fecha"></span></span-->     
       </div>
       
     </div>
@@ -258,11 +258,16 @@
 import Highcharts from "highcharts";
 import numberFormat from "~/mixins/numberFormat.js"; 
 import Fuente from '~/components/reportea3/Fuente';
+import { useReporteStore } from '~/stores/reporte'
 export default {
+  setup() {
+    const reporteStore = useReporteStore()
+    return { reporteStore }
+  },
 mixins:[numberFormat],
   mounted() {
 
-      //console.log( this.$store.getters['reporte/results'].fuente_financiamiento.filter((obj)=>(obj.anioeje==='2016')).reduce(function(prevVal, elem) {  return prevVal + (!isNaN(parseFloat(elem.pim))&&elem.pim!==null ? parseFloat(elem.pim) : 0) }, 0) );
+      //console.log( reporteStore.results.fuente_financiamiento.filter((obj)=>(obj.anioeje==='2016')).reduce(function(prevVal, elem) {  return prevVal + (!isNaN(parseFloat(elem.pim))&&elem.pim!==null ? parseFloat(elem.pim) : 0) }, 0) );
 
   },
   methods: {
@@ -289,7 +294,7 @@ mixins:[numberFormat],
     },
     getVal (fuente, anio, valor) {
         
-        let rs = this.$store.getters['reporte/results'].fuente_financiamiento.filter((obj) => {
+        let rs = reporteStore.results.fuente_financiamiento.filter((obj) => {
                     return obj.nombre === fuente && obj.anioeje === anio
                 })
         if( rs.length > 0 ) {

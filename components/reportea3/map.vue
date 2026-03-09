@@ -4,9 +4,9 @@
     @mouseover="downloadButtonActive=true"
     @mouseleave="downloadButtonActive=false"
   >
-    <transition name="fade" v-if="!$store.getters['reporte/isMancomunidad']">
+    <transition name="fade" v-if="!reporteStore.isMancomunidad">
       <div class="download-button" v-show="downloadButtonActive">
-        <button class="btn btn-danger" @click="getPdfMap()" :disabled="$store.getters['Loading/isLoading']">Descargar mapa</button>
+        <button class="btn btn-danger" @click="getPdfMap()" :disabled="loadingStore.isLoading">Descargar mapa</button>
       </div>
     </transition>
     <div class="map" id="map" @dblclick="zoomo"></div>
@@ -14,12 +14,19 @@
 </template>
 
 <script>
-import Highcharts from "~/plugins/highmaps";
+import Highcharts from "~/lib/highmaps.js";
 import pdfPage from "~/mixins/PDFPrint.js";
+import { useReporteStore } from '~/stores/reporte'
+import { useLoadingStore } from '~/stores/loading'
 
 
 export default {
   mixins: [pdfPage],
+  setup() {
+    const reporteStore = useReporteStore()
+    const loadingStore = useLoadingStore()
+    return { reporteStore, loadingStore }
+  },
   data() {
     return {
       data: null,
@@ -32,31 +39,29 @@ export default {
     };
   },
   created() {
-    this.data = this.$store.getters["reporte/results"].geojson[0];
-    this.superficie = this.$store.getters[
-      "reporte/results"
-    ].ejecutora[0].superficie;
+    this.data = this.reporteStore.results.geojson[0];
+    this.superficie = this.reporteStore.results.ejecutora[0].superficie;
 
-    this.selected = 
-        this.$store.getters["reporte/tipo"] === "prov"
-        ? this.$store.getters["reporte/results"].ejecutoraProv[0].ubigeo.substring(0, 4)
-        : this.$store.getters["reporte/tipo"] === "dpto"
-        ? this.$store.getters["reporte/results"].ejecutoraProv[0].ubigeo.substring(0, 2)
-        : this.$store.getters["reporte/results"].ejecutora[0].ubigeo;
+    this.selected =
+        this.reporteStore.tipo === "prov"
+        ? this.reporteStore.results.ejecutoraProv[0].ubigeo.substring(0, 4)
+        : this.reporteStore.tipo === "dpto"
+        ? this.reporteStore.results.ejecutoraProv[0].ubigeo.substring(0, 2)
+        : this.reporteStore.results.ejecutora[0].ubigeo;
 
-    if(this.$store.getters["reporte/tipo"] === "dist"){
-      this.densidad = this.$store.getters["reporte/results"].censo2017.filter(
+    if(this.reporteStore.tipo === "dist"){
+      this.densidad = this.reporteStore.results.censo2017.filter(
         obj => obj.cat === "Distrito"
       )[0].pob_total / parseFloat(this.superficie);
-    } else if (this.$store.getters["reporte/tipo"] === "prov") {
-      this.densidad = this.$store.getters["reporte/results"].censo2017.filter(
+    } else if (this.reporteStore.tipo === "prov") {
+      this.densidad = this.reporteStore.results.censo2017.filter(
         obj => obj.cat === "Provincia"
       )[0].pob_total / parseFloat(this.superficie);
     } else {
-      this.densidad = this.$store.getters["reporte/results"].ejecutora[0].densidad
+      this.densidad = this.reporteStore.results.ejecutora[0].densidad
     }
-    
-      
+
+
   },
   mounted() {
     var color;
@@ -64,11 +69,11 @@ export default {
     var capitalColor;
     var capitalBorder = 0.5;
 
-    if (this.$store.getters["reporte/tipo"] === "prov") {
+    if (this.reporteStore.tipo === "prov") {
       color = "#617ab6";
       name = "Provincia";
       capitalColor = "#30cd58";
-    } else if (this.$store.getters["reporte/isMancomunidad"]) {
+    } else if (this.reporteStore.isMancomunidad) {
       capitalColor = "#ffffff";
       capitalBorder=0;
     } else {
@@ -82,7 +87,7 @@ export default {
     var gson = this.data
 
 
-    /*var topodata = 
+    /*var topodata =
 
     // Convert the topoJSON feature into geoJSON
     var geojson = topojson.feature(
@@ -90,7 +95,7 @@ export default {
       // For this demo, get the first of the named objects
       topodata.objects[Object.keys(topodata.objects)]
     );
-    
+
     geojson['crs'] = { "type": "name", "properties": { "name": "EPSG:4326" } }
     console.log(geojson)
     const data = geojson;*/
@@ -100,19 +105,19 @@ export default {
 
     let selected = [{c:this.selected}]
 
-    if (this.$store.getters["reporte/tipo"] === "dpto"){
+    if (this.reporteStore.tipo === "dpto"){
       selected.push({ c: '1508' },{ c: '1502' },{ c: '1503' },{ c: '1504' },{ c: '1505' },{ c: '1506' },{ c: '1507' },{ c: '1508' },{ c: '1509' },{ c: '1510' })
     }
 
-    if (this.$store.getters["reporte/tipo"] === "dpto" && this.$store.getters["reporte/isMancomunidad"]){
+    if (this.reporteStore.tipo === "dpto" && this.reporteStore.isMancomunidad){
       selected = [{ c: '03' },{ c: '05' },{ c: '09' },{ c: '11' },{ c: '12' }]
       this.tituloCapital = ""
     }
 
-    if (this.$store.getters["reporte/isRegion"] && this.$store.getters["reporte/requestCode"]==='150801'){
+    if (this.reporteStore.isRegion && this.reporteStore.requestCode==='150801'){
       this.tituloCapital = "Sede Administrativa"
     }
-    
+
 
 
 
@@ -241,14 +246,14 @@ export default {
   },
   methods: {
     getPdfMap() {
-      this.$store.dispatch("Loading/START", { tipo:'Notif', text: "Obteniendo Mapa"} );
+      this.loadingStore.start({ tipo:'Notif', text: "Obteniendo Mapa"} );
 
-      this.$store
-        .dispatch("reporte/fetchMapImage", "a3")
+      this.reporteStore
+        .fetchMapImage("a3")
         .then(MapLocation => {
-          let docName = `Mapa ${this.$store.getters["reporte/description"]}.pdf`
+          let docName = `Mapa ${this.reporteStore.description}.pdf`
           this.pdfMapDownload(MapLocation.data, docName).then(pdf => {
-            this.$store.dispatch("Loading/STOP");
+            this.loadingStore.stop();
           });
           this.gaEvent(
             "send",
@@ -259,7 +264,7 @@ export default {
           );
         })
         .catch(err => {
-          this.$store.dispatch("Loading/STOP");
+          this.loadingStore.stop();
         });
     }
   }
@@ -289,7 +294,7 @@ export default {
 .fade-leave-active {
   transition: opacity 0.5s;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.fade-enter-from, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
 </style>

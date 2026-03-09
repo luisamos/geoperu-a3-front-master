@@ -1,35 +1,27 @@
 <template>
-  <div :class="$options.name">
+  <div class="adscrita">
         <label
-          v-if="$store.getters['reporte/results'].ejecutora[0].adscrito===1 && $store.getters['reporte/tipo'] !== 'dpto'"
-          
+          v-if="reporteStore.results.ejecutora[0].adscrito===1 && reporteStore.tipo !== 'dpto'"
         >MUNICIPALIDAD ESTÁ ADSCRITA A INVIERTE.PE</label>
 
         <label
-          v-if="$store.getters['reporte/results'].ejecutora[0].adscrito===0 && $store.getters['reporte/tipo'] !== 'dpto'"
-          
+          v-if="reporteStore.results.ejecutora[0].adscrito===0 && reporteStore.tipo !== 'dpto'"
         >MUNICIPALIDAD NO ESTÁ ADSCRITA A INVIERTE.PE</label>
 
         <label
-          v-if="$store.getters['reporte/isMancomunidad'] === false && $store.getters['reporte/tipo'] === 'dpto' && $store.getters['reporte/results'].ejecutora[0].subsistema>0"
-          
+          v-if="reporteStore.isMancomunidad === false && reporteStore.tipo === 'dpto' && reporteStore.results.ejecutora[0].subsistema>0"
         >GOBIERNO REGIONAL CUENTA CON SUBSISTEMA GEO PERÚ</label>
 
-     
-
-          <label
-          v-if="$store.getters['reporte/isMancomunidad'] === false && $store.getters['reporte/tipo'] === 'dpto' && $store.getters['reporte/results'].ejecutora[0].subsistema==0"
-          
+        <label
+          v-if="reporteStore.isMancomunidad === false && reporteStore.tipo === 'dpto' && reporteStore.results.ejecutora[0].subsistema==0"
         >GOBIERNO REGIONAL NO CUENTA CON SUBSISTEMA GEO PERÚ</label>
 
-            <label
-          v-if="$store.getters['reporte/isMancomunidad'] === true && $store.getters['reporte/results'].ejecutora[0].subsistema>0"
-          
+        <label
+          v-if="reporteStore.isMancomunidad === true && reporteStore.results.ejecutora[0].subsistema>0"
         >MANCOMUNIDAD CUENTA CON SUBSISTEMA GEO PERÚ</label>
 
-         <label
-          v-if="$store.getters['reporte/isMancomunidad'] === true && $store.getters['reporte/results'].ejecutora[0].subsistema==0"
-          
+        <label
+          v-if="reporteStore.isMancomunidad === true && reporteStore.results.ejecutora[0].subsistema==0"
         >MANCOMUNIDAD NO CUENTA CON SUBSISTEMA GEO PERÚ</label>
 
     </div>
@@ -42,11 +34,10 @@
   border-radius:10px;
   display: flex;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
 }
 
 .adscrita label {
-  /*color:#5cb85c !important;*/
   color: black !important;
   border:none;
   padding-right: 12%;
@@ -57,7 +48,13 @@
  }
 </style>
 <script>
+import { useReporteStore } from '~/stores/reporte'
+
 export default {
-  name: 'adscrita'
+  name: 'adscrita',
+  setup() {
+    const reporteStore = useReporteStore()
+    return { reporteStore }
+  }
 }
 </script>

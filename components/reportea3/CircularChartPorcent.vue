@@ -23,7 +23,7 @@
               <b v-text="provincia"></b><b>%</b>
               <br>
             </span>
-            <span v-if="$store.getters['reporte/tipo'] === 'dist'" class="label-value label-distrito" style="margin-left:-10px">
+            <span v-if="reporteStore.tipo === 'dist'" class="label-value label-distrito" style="margin-left:-10px">
               <b v-text="distrito"></b><b>%</b>
             </span>
             
@@ -40,6 +40,7 @@ import highchartsMore from "highcharts/highcharts-more";
 import solidGauge from "highcharts/modules/solid-gauge";
 
 import numberFormat from "~/mixins/numberFormat.js";
+import { useReporteStore } from '~/stores/reporte'
 
 if (typeof Highcharts === "object") {
   highchartsMore(Highcharts);
@@ -47,6 +48,10 @@ if (typeof Highcharts === "object") {
 }
 
 export default {
+  setup() {
+    const reporteStore = useReporteStore()
+    return { reporteStore }
+  },
   mixins: [numberFormat],
   props:{
     ctitle: {
@@ -220,7 +225,7 @@ export default {
         }
       ];
 
-    if ( this.$store.getters['reporte/tipo'] === "dist" ) {
+    if ( reporteStore.tipo === "dist" ) {
 
       
       this.seriesBackground.push({

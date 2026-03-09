@@ -1,5 +1,5 @@
 <template>
-  <div :class="$options.name" @dblclick="zoomo"
+  <div :class="componentName" @dblclick="zoomo"
   >
     <div class="cabecera">
       <div class="title">
@@ -12,15 +12,15 @@
       ctitle="Población con al menos una NBI (%)"
       class="chart"
       :colors = colors
-      :distrito="getData(this.$store.getters['reporte/results'].nbi.filter((obj)=>obj.cat ==='Distrito'), 'almenosu_1')"
-      :provincia="getData(this.$store.getters['reporte/results'].nbi.filter((obj)=>obj.cat ==='Provincia'), 'almenosu_1')"
-      :departamento="getData(this.$store.getters['reporte/results'].nbi.filter((obj)=>obj.cat ==='Departamento'), 'almenosu_1')"
-      :nacional="getData(this.$store.getters['reporte/results'].nbi.filter((obj)=>obj.cat ==='Nacional'), 'almenosu_1')"
+      :distrito="getData(reporteStore.results.nbi.filter((obj)=>obj.cat ==='Distrito'), 'almenosu_1')"
+      :provincia="getData(reporteStore.results.nbi.filter((obj)=>obj.cat ==='Provincia'), 'almenosu_1')"
+      :departamento="getData(reporteStore.results.nbi.filter((obj)=>obj.cat ==='Departamento'), 'almenosu_1')"
+      :nacional="getData(reporteStore.results.nbi.filter((obj)=>obj.cat ==='Nacional'), 'almenosu_1')"
 
-      :ndistrito="getDataInt(this.$store.getters['reporte/results'].nbi.filter((obj)=>obj.cat ==='Distrito'), 'almenosuna')"
-      :nprovincia="getDataInt(this.$store.getters['reporte/results'].nbi.filter((obj)=>obj.cat ==='Provincia'), 'almenosuna')"
-      :ndepartamento="getDataInt(this.$store.getters['reporte/results'].nbi.filter((obj)=>obj.cat ==='Departamento'), 'almenosuna')"
-      :nnacional="getDataInt(this.$store.getters['reporte/results'].nbi.filter((obj)=>obj.cat ==='Nacional'), 'almenosuna')"
+      :ndistrito="getDataInt(reporteStore.results.nbi.filter((obj)=>obj.cat ==='Distrito'), 'almenosuna')"
+      :nprovincia="getDataInt(reporteStore.results.nbi.filter((obj)=>obj.cat ==='Provincia'), 'almenosuna')"
+      :ndepartamento="getDataInt(reporteStore.results.nbi.filter((obj)=>obj.cat ==='Departamento'), 'almenosuna')"
+      :nnacional="getDataInt(reporteStore.results.nbi.filter((obj)=>obj.cat ==='Nacional'), 'almenosuna')"
     />
 
     <Fuente class="fuente" label="Fuente: INEI - Censos Nacionales 2017: XII de Población y VII de Vivienda" />
@@ -33,12 +33,18 @@ import Leyenda from "~/components/reportea3/Leyenda.vue";
 import Fuente from "~/components/reportea3/Fuente.vue";
 
 import numberFormat from '~/mixins/numberFormat.js'
+import { useReporteStore } from '~/stores/reporte'
 
 export default {
+  setup() {
+    const reporteStore = useReporteStore()
+    return { reporteStore }
+  },
   name: 'pobreza-nomon',
   mixins: [numberFormat],
   data: () => {
     return {
+      componentName: 'pobreza-nomon',
       colors: {
           distrito: '#bc6600',
           provincia: '#834300',
@@ -118,19 +124,19 @@ export default {
   height:8%;
 }
 
-/deep/ .chart .label-nacional b {
+:deep(.chart .label-nacional b) {
   color: #ff6356 !important;
 }
 
-/deep/ .chart .label-departamento b {
+:deep(.chart .label-departamento b) {
   color: #421e00 !important;
 }
 
-/deep/ .chart .label-provincia b {
+:deep(.chart .label-provincia b) {
   color: #834300 !important;
 }
 
-/deep/ .chart .label-distrito b {
+:deep(.chart .label-distrito b) {
   color: #bc6600 !important;
 }
 
@@ -139,27 +145,27 @@ export default {
 
 
 /* Leyenda */
-/deep/ .leyenda .item {
+:deep(.leyenda .item) {
   font-size: 7px;
 }
-/deep/ .leyenda .item .legend-circle {
+:deep(.leyenda .item .legend-circle) {
   width: 7px;
   height: 7px;
 }
 
-/deep/ .leyenda .item .legend-circle-nacional {
+:deep(.leyenda .item .legend-circle-nacional) {
   background-color: #ff6356 !important;
 }
 
-/deep/ .leyenda .item .legend-circle-departamento {
+:deep(.leyenda .item .legend-circle-departamento) {
   background-color: #421e00 !important;
 }
 
-/deep/ .leyenda .item .legend-circle-provincia {
+:deep(.leyenda .item .legend-circle-provincia) {
   background-color: #834300 !important;
 }
 
-/deep/ .leyenda .item .legend-circle-distrito {
+:deep(.leyenda .item .legend-circle-distrito) {
   background-color: #bc6600 !important;
 }
 

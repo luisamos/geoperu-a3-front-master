@@ -19,22 +19,22 @@
             style="width:33%;float:left;"
             :title="'Comprensión Lectora (%)'"
             :data="{
-                      nacional: getData(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Nacional' && obj.anno ==='2018'), 'lt_pest_sa'),
-                      departamento: getData(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Departamento' && obj.anno ==='2018'), 'lt_pest_sa'),
-                      provincia:getData(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Provincia' && obj.anno ==='2018'), 'lt_pest_sa'),
-                      distrito: getData(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Distrito' && obj.anno ==='2018'), 'lt_pest_sa'),
+                      nacional: getData(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Nacional' && obj.anno ==='2018'), 'lt_pest_sa'),
+                      departamento: getData(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Departamento' && obj.anno ==='2018'), 'lt_pest_sa'),
+                      provincia:getData(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Provincia' && obj.anno ==='2018'), 'lt_pest_sa'),
+                      distrito: getData(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Distrito' && obj.anno ==='2018'), 'lt_pest_sa'),
 
-                      nnacional: getDataInt(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Nacional' && obj.anno ==='2018'), 'lt_nest_sa'),
-                      ndepartamento:getDataInt(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Departamento' && obj.anno ==='2018'), 'lt_nest_sa'),
-                      nprovincia:getDataInt(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Provincia' && obj.anno ==='2018'), 'lt_nest_sa'),
-                      ndistrito: getDataInt(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Distrito' && obj.anno ==='2018'), 'lt_nest_sa'),
+                      nnacional: getDataInt(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Nacional' && obj.anno ==='2018'), 'lt_nest_sa'),
+                      ndepartamento:getDataInt(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Departamento' && obj.anno ==='2018'), 'lt_nest_sa'),
+                      nprovincia:getDataInt(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Provincia' && obj.anno ==='2018'), 'lt_nest_sa'),
+                      ndistrito: getDataInt(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Distrito' && obj.anno ==='2018'), 'lt_nest_sa'),
               
                     }"
              :universo="{
-                      nacional: getDataInt(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Nacional' && obj.anno ==='2018'), 'evaluados'),
-                      departamento:getDataInt(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Departamento' && obj.anno ==='2018'), 'evaluados'),
-                      provincia:getDataInt(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Provincia' && obj.anno ==='2018'), 'evaluados'),
-                      distrito: getDataInt(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Distrito' && obj.anno ==='2018'), 'evaluados'),
+                      nacional: getDataInt(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Nacional' && obj.anno ==='2018'), 'evaluados'),
+                      departamento:getDataInt(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Departamento' && obj.anno ==='2018'), 'evaluados'),
+                      provincia:getDataInt(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Provincia' && obj.anno ==='2018'), 'evaluados'),
+                      distrito: getDataInt(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Distrito' && obj.anno ==='2018'), 'evaluados'),
               }"
 
             @selected="universoSecundaria"
@@ -43,21 +43,21 @@
             style="width:33%;float:left;"
             :title="'Matemática (%)'"
             :data="{
-                    distrito: getData(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Distrito' && obj.anno ==='2018'), 'mt_pest_sa'),
-                    provincia: getData(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Provincia' && obj.anno ==='2018'), 'mt_pest_sa'),
-                    departamento: getData(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Departamento' && obj.anno ==='2018'), 'mt_pest_sa'),
-                    nacional: getData(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Nacional' && obj.anno ==='2018'), 'mt_pest_sa'),
+                    distrito: getData(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Distrito' && obj.anno ==='2018'), 'mt_pest_sa'),
+                    provincia: getData(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Provincia' && obj.anno ==='2018'), 'mt_pest_sa'),
+                    departamento: getData(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Departamento' && obj.anno ==='2018'), 'mt_pest_sa'),
+                    nacional: getData(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Nacional' && obj.anno ==='2018'), 'mt_pest_sa'),
 
-                    ndistrito: getDataInt(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Distrito' && obj.anno ==='2018'), 'mt_nest_sa'),
-                    nprovincia: getDataInt(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Provincia' && obj.anno ==='2018'), 'mt_nest_sa'),
-                    ndepartamento: getDataInt(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Departamento' && obj.anno ==='2018'), 'mt_nest_sa'),
-                    nnacional: getDataInt(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Nacional' && obj.anno ==='2018'), 'mt_nest_sa')
+                    ndistrito: getDataInt(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Distrito' && obj.anno ==='2018'), 'mt_nest_sa'),
+                    nprovincia: getDataInt(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Provincia' && obj.anno ==='2018'), 'mt_nest_sa'),
+                    ndepartamento: getDataInt(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Departamento' && obj.anno ==='2018'), 'mt_nest_sa'),
+                    nnacional: getDataInt(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Nacional' && obj.anno ==='2018'), 'mt_nest_sa')
                     }"
               :universo="{
-                      nacional: getDataInt(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Nacional' && obj.anno ==='2018'), 'evaluados'),
-                      departamento:getDataInt(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Departamento' && obj.anno ==='2018'), 'evaluados'),
-                      provincia:getDataInt(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Provincia' && obj.anno ==='2018'), 'evaluados'),
-                      distrito: getDataInt(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Distrito' && obj.anno ==='2018'), 'evaluados'),
+                      nacional: getDataInt(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Nacional' && obj.anno ==='2018'), 'evaluados'),
+                      departamento:getDataInt(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Departamento' && obj.anno ==='2018'), 'evaluados'),
+                      provincia:getDataInt(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Provincia' && obj.anno ==='2018'), 'evaluados'),
+                      distrito: getDataInt(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Distrito' && obj.anno ==='2018'), 'evaluados'),
               }"
 
             @selected="universoSecundaria"
@@ -66,21 +66,21 @@
             style="width:33%;float:left;"
             :title="'Innovación y Tecnología (%)'"
             :data="{
-                    distrito: getData(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Distrito' && obj.anno ==='2018'), 'ct_pest_sa'),
-                    provincia: getData(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Provincia' && obj.anno ==='2018'), 'ct_pest_sa'),
-                    departamento: getData(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Departamento' && obj.anno ==='2018'), 'ct_pest_sa'),
-                    nacional: getData(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Nacional' && obj.anno ==='2018'), 'ct_pest_sa'),
+                    distrito: getData(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Distrito' && obj.anno ==='2018'), 'ct_pest_sa'),
+                    provincia: getData(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Provincia' && obj.anno ==='2018'), 'ct_pest_sa'),
+                    departamento: getData(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Departamento' && obj.anno ==='2018'), 'ct_pest_sa'),
+                    nacional: getData(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Nacional' && obj.anno ==='2018'), 'ct_pest_sa'),
 
-                    ndistrito: getDataInt(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Distrito' && obj.anno ==='2018'), 'ct_nest_sa'),
-                    nprovincia: getDataInt(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Provincia' && obj.anno ==='2018'), 'ct_nest_sa'),
-                    ndepartamento: getDataInt(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Departamento' && obj.anno ==='2018'), 'ct_nest_sa'),
-                    nnacional: getDataInt(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Nacional' && obj.anno ==='2018'), 'ct_nest_sa'),
+                    ndistrito: getDataInt(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Distrito' && obj.anno ==='2018'), 'ct_nest_sa'),
+                    nprovincia: getDataInt(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Provincia' && obj.anno ==='2018'), 'ct_nest_sa'),
+                    ndepartamento: getDataInt(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Departamento' && obj.anno ==='2018'), 'ct_nest_sa'),
+                    nnacional: getDataInt(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Nacional' && obj.anno ==='2018'), 'ct_nest_sa'),
                   }"
              :universo="{
-                nacional: getDataInt(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Nacional' && obj.anno ==='2018'), 'evaluados'),
-                departamento:getDataInt(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Departamento' && obj.anno ==='2018'), 'evaluados'),
-                provincia:getDataInt(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Provincia' && obj.anno ==='2018'), 'evaluados'),
-                distrito: getDataInt(this.$store.getters['reporte/results'].ece_sec.filter((obj)=>obj.cat ==='Distrito' && obj.anno ==='2018'), 'evaluados'),
+                nacional: getDataInt(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Nacional' && obj.anno ==='2018'), 'evaluados'),
+                departamento:getDataInt(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Departamento' && obj.anno ==='2018'), 'evaluados'),
+                provincia:getDataInt(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Provincia' && obj.anno ==='2018'), 'evaluados'),
+                distrito: getDataInt(reporteStore.results.ece_sec.filter((obj)=>obj.cat ==='Distrito' && obj.anno ==='2018'), 'evaluados'),
               }"
 
             @selected="universoSecundaria"
@@ -109,21 +109,21 @@
             :title="'Comprensión Lectora (%)'"
             style="width:50%;height:100%;float:left;"
             :data="{
-                     distrito:getData(this.$store.getters['reporte/results'].ece.filter((obj)=>obj.cat ==='Distrito' && obj.anno ==='2018'), 'lt_pest_sa'),
-                      provincia:getData(this.$store.getters['reporte/results'].ece.filter((obj)=>obj.cat ==='Provincia' && obj.anno ==='2018'), 'lt_pest_sa'),
-                      departamento:getData(this.$store.getters['reporte/results'].ece.filter((obj)=>obj.cat ==='Departamento' && obj.anno ==='2018'), 'lt_pest_sa'),
-                      nacional:getData(this.$store.getters['reporte/results'].ece.filter((obj)=>obj.cat ==='Nacional' && obj.anno ==='2018'), 'lt_pest_sa'),
+                     distrito:getData(reporteStore.results.ece.filter((obj)=>obj.cat ==='Distrito' && obj.anno ==='2018'), 'lt_pest_sa'),
+                      provincia:getData(reporteStore.results.ece.filter((obj)=>obj.cat ==='Provincia' && obj.anno ==='2018'), 'lt_pest_sa'),
+                      departamento:getData(reporteStore.results.ece.filter((obj)=>obj.cat ==='Departamento' && obj.anno ==='2018'), 'lt_pest_sa'),
+                      nacional:getData(reporteStore.results.ece.filter((obj)=>obj.cat ==='Nacional' && obj.anno ==='2018'), 'lt_pest_sa'),
 
-                      ndistrito:getDataInt(this.$store.getters['reporte/results'].ece.filter((obj)=>obj.cat ==='Distrito' && obj.anno ==='2018'), 'lt_nest_sa'),
-                      nprovincia: getDataInt(this.$store.getters['reporte/results'].ece.filter((obj)=>obj.cat ==='Provincia' && obj.anno ==='2018'), 'lt_nest_sa'),
-                      ndepartamento: getDataInt(this.$store.getters['reporte/results'].ece.filter((obj)=>obj.cat ==='Departamento' && obj.anno ==='2018'), 'lt_nest_sa'),
-                      nnacional: getDataInt(this.$store.getters['reporte/results'].ece.filter((obj)=>obj.cat ==='Nacional' && obj.anno ==='2018'), 'lt_nest_sa')
+                      ndistrito:getDataInt(reporteStore.results.ece.filter((obj)=>obj.cat ==='Distrito' && obj.anno ==='2018'), 'lt_nest_sa'),
+                      nprovincia: getDataInt(reporteStore.results.ece.filter((obj)=>obj.cat ==='Provincia' && obj.anno ==='2018'), 'lt_nest_sa'),
+                      ndepartamento: getDataInt(reporteStore.results.ece.filter((obj)=>obj.cat ==='Departamento' && obj.anno ==='2018'), 'lt_nest_sa'),
+                      nnacional: getDataInt(reporteStore.results.ece.filter((obj)=>obj.cat ==='Nacional' && obj.anno ==='2018'), 'lt_nest_sa')
                     }"
              :universo="{
-                nacional: getDataInt(this.$store.getters['reporte/results'].ece.filter((obj)=>obj.cat ==='Nacional' && obj.anno ==='2018'), 'evaluados'),
-                departamento: getDataInt(this.$store.getters['reporte/results'].ece.filter((obj)=>obj.cat ==='Departamento' && obj.anno ==='2018'), 'evaluados'),
-                provincia: getDataInt(this.$store.getters['reporte/results'].ece.filter((obj)=>obj.cat ==='Provincia' && obj.anno ==='2018'), 'evaluados'),
-                distrito: getDataInt(this.$store.getters['reporte/results'].ece.filter((obj)=>obj.cat ==='Distrito' && obj.anno ==='2018'), 'evaluados')
+                nacional: getDataInt(reporteStore.results.ece.filter((obj)=>obj.cat ==='Nacional' && obj.anno ==='2018'), 'evaluados'),
+                departamento: getDataInt(reporteStore.results.ece.filter((obj)=>obj.cat ==='Departamento' && obj.anno ==='2018'), 'evaluados'),
+                provincia: getDataInt(reporteStore.results.ece.filter((obj)=>obj.cat ==='Provincia' && obj.anno ==='2018'), 'evaluados'),
+                distrito: getDataInt(reporteStore.results.ece.filter((obj)=>obj.cat ==='Distrito' && obj.anno ==='2018'), 'evaluados')
               }"
 
             @selected="universoPrimaria"
@@ -133,21 +133,21 @@
             style="width:50%;float:left;"
             :title="'Matemática (%)'"
             :data="{
-                      distrito: getData(this.$store.getters['reporte/results'].ece.filter((obj)=>obj.cat ==='Distrito' && obj.anno ==='2018'), 'mt_pest_sa'),
-                      provincia: getData(this.$store.getters['reporte/results'].ece.filter((obj)=>obj.cat ==='Provincia' && obj.anno ==='2018'), 'mt_pest_sa'),
-                      departamento: getData(this.$store.getters['reporte/results'].ece.filter((obj)=>obj.cat ==='Departamento' && obj.anno ==='2018'), 'mt_pest_sa'),
-                      nacional:getData(this.$store.getters['reporte/results'].ece.filter((obj)=>obj.cat ==='Nacional' && obj.anno ==='2018'), 'mt_pest_sa'),
+                      distrito: getData(reporteStore.results.ece.filter((obj)=>obj.cat ==='Distrito' && obj.anno ==='2018'), 'mt_pest_sa'),
+                      provincia: getData(reporteStore.results.ece.filter((obj)=>obj.cat ==='Provincia' && obj.anno ==='2018'), 'mt_pest_sa'),
+                      departamento: getData(reporteStore.results.ece.filter((obj)=>obj.cat ==='Departamento' && obj.anno ==='2018'), 'mt_pest_sa'),
+                      nacional:getData(reporteStore.results.ece.filter((obj)=>obj.cat ==='Nacional' && obj.anno ==='2018'), 'mt_pest_sa'),
 
-                      ndistrito: getDataInt(this.$store.getters['reporte/results'].ece.filter((obj)=>obj.cat ==='Distrito' && obj.anno ==='2018'), 'mt_nest_sa'),
-                      nprovincia: getDataInt(this.$store.getters['reporte/results'].ece.filter((obj)=>obj.cat ==='Provincia' && obj.anno ==='2018'), 'mt_nest_sa'),
-                      ndepartamento: getDataInt(this.$store.getters['reporte/results'].ece.filter((obj)=>obj.cat ==='Departamento' && obj.anno ==='2018'), 'mt_nest_sa'),
-                      nnacional: getDataInt(this.$store.getters['reporte/results'].ece.filter((obj)=>obj.cat ==='Nacional' && obj.anno ==='2018'), 'mt_nest_sa')
+                      ndistrito: getDataInt(reporteStore.results.ece.filter((obj)=>obj.cat ==='Distrito' && obj.anno ==='2018'), 'mt_nest_sa'),
+                      nprovincia: getDataInt(reporteStore.results.ece.filter((obj)=>obj.cat ==='Provincia' && obj.anno ==='2018'), 'mt_nest_sa'),
+                      ndepartamento: getDataInt(reporteStore.results.ece.filter((obj)=>obj.cat ==='Departamento' && obj.anno ==='2018'), 'mt_nest_sa'),
+                      nnacional: getDataInt(reporteStore.results.ece.filter((obj)=>obj.cat ==='Nacional' && obj.anno ==='2018'), 'mt_nest_sa')
                     }"
             :universo="{
-                nacional: getDataInt(this.$store.getters['reporte/results'].ece.filter((obj)=>obj.cat ==='Nacional' && obj.anno ==='2018'), 'evaluados'),
-                departamento: getDataInt(this.$store.getters['reporte/results'].ece.filter((obj)=>obj.cat ==='Departamento' && obj.anno ==='2018'), 'evaluados'),
-                provincia: getDataInt(this.$store.getters['reporte/results'].ece.filter((obj)=>obj.cat ==='Provincia' && obj.anno ==='2018'), 'evaluados'),
-                distrito: getDataInt(this.$store.getters['reporte/results'].ece.filter((obj)=>obj.cat ==='Distrito' && obj.anno ==='2018'), 'evaluados')
+                nacional: getDataInt(reporteStore.results.ece.filter((obj)=>obj.cat ==='Nacional' && obj.anno ==='2018'), 'evaluados'),
+                departamento: getDataInt(reporteStore.results.ece.filter((obj)=>obj.cat ==='Departamento' && obj.anno ==='2018'), 'evaluados'),
+                provincia: getDataInt(reporteStore.results.ece.filter((obj)=>obj.cat ==='Provincia' && obj.anno ==='2018'), 'evaluados'),
+                distrito: getDataInt(reporteStore.results.ece.filter((obj)=>obj.cat ==='Distrito' && obj.anno ==='2018'), 'evaluados')
               }"
 
             @selected="universoPrimaria"
@@ -176,15 +176,15 @@
             :title="' Población que no sabe leer ni escribir (%)'"
             style="width:100%;float:left;"
             :data="{
-                      nacional: formatNumber($store.getters['reporte/results'].censo2017.filter((obj)=>{ return obj.cat === 'Nacional'})[0].p_lees_no,1),
-                      departamento: formatNumber($store.getters['reporte/results'].censo2017.filter((obj)=>{return obj.cat === 'Departamento'})[0].p_lees_no,1),
-                      provincia:formatNumber($store.getters['reporte/results'].censo2017.filter((obj)=>{return obj.cat === 'Provincia'})[0].p_lees_no,1),
-                      distrito: formatNumber($store.getters['reporte/results'].censo2017.filter((obj)=>{return obj.cat === 'Distrito'})[0].p_lees_no,1),
+                      nacional: formatNumber(reporteStore.results.censo2017.filter((obj)=>{ return obj.cat === 'Nacional'})[0].p_lees_no,1),
+                      departamento: formatNumber(reporteStore.results.censo2017.filter((obj)=>{return obj.cat === 'Departamento'})[0].p_lees_no,1),
+                      provincia:formatNumber(reporteStore.results.censo2017.filter((obj)=>{return obj.cat === 'Provincia'})[0].p_lees_no,1),
+                      distrito: formatNumber(reporteStore.results.censo2017.filter((obj)=>{return obj.cat === 'Distrito'})[0].p_lees_no,1),
 
-                      nnacional: formatNumberInt($store.getters['reporte/results'].censo2017.filter((obj)=>{return obj.cat === 'Nacional'})[0].lees_no),
-                      ndepartamento: formatNumberInt($store.getters['reporte/results'].censo2017.filter((obj)=>{return obj.cat === 'Departamento'})[0].lees_no),
-                      nprovincia:formatNumberInt($store.getters['reporte/results'].censo2017.filter((obj)=>{return obj.cat === 'Provincia'})[0].lees_no),
-                      ndistrito: formatNumberInt($store.getters['reporte/results'].censo2017.filter((obj)=>{return obj.cat === 'Distrito'})[0].lees_no),
+                      nnacional: formatNumberInt(reporteStore.results.censo2017.filter((obj)=>{return obj.cat === 'Nacional'})[0].lees_no),
+                      ndepartamento: formatNumberInt(reporteStore.results.censo2017.filter((obj)=>{return obj.cat === 'Departamento'})[0].lees_no),
+                      nprovincia:formatNumberInt(reporteStore.results.censo2017.filter((obj)=>{return obj.cat === 'Provincia'})[0].lees_no),
+                      ndistrito: formatNumberInt(reporteStore.results.censo2017.filter((obj)=>{return obj.cat === 'Distrito'})[0].lees_no),
                     }"
           />
         </div>
@@ -203,15 +203,15 @@
             :title="'Material predominante de la vivienda con piso de tierra (%)'"
             style="width:100%;height:49.25%;"
             :data="{
-                      nacional: formatNumber($store.getters['reporte/results'].brecha.filter((obj)=>{ return obj.cat === 'Nacional'})[0].pv_ptierra,1),
-                      departamento: formatNumber($store.getters['reporte/results'].brecha.filter((obj)=>{return obj.cat === 'Departamento'})[0].pv_ptierra,1),
-                      provincia:formatNumber($store.getters['reporte/results'].brecha.filter((obj)=>{return obj.cat === 'Provincia'})[0].pv_ptierra,1),
-                      distrito: formatNumber($store.getters['reporte/results'].brecha.filter((obj)=>{return obj.cat === 'Distrito'})[0].pv_ptierra,1),
+                      nacional: formatNumber(reporteStore.results.brecha.filter((obj)=>{ return obj.cat === 'Nacional'})[0].pv_ptierra,1),
+                      departamento: formatNumber(reporteStore.results.brecha.filter((obj)=>{return obj.cat === 'Departamento'})[0].pv_ptierra,1),
+                      provincia:formatNumber(reporteStore.results.brecha.filter((obj)=>{return obj.cat === 'Provincia'})[0].pv_ptierra,1),
+                      distrito: formatNumber(reporteStore.results.brecha.filter((obj)=>{return obj.cat === 'Distrito'})[0].pv_ptierra,1),
 
-                      nnacional: formatNumberInt($store.getters['reporte/results'].brecha.filter((obj)=>{ return obj.cat === 'Nacional'})[0].v_ptierra),
-                      ndepartamento: formatNumberInt($store.getters['reporte/results'].brecha.filter((obj)=>{return obj.cat === 'Departamento'})[0].v_ptierra),
-                      nprovincia:formatNumberInt($store.getters['reporte/results'].brecha.filter((obj)=>{return obj.cat === 'Provincia'})[0].v_ptierra),
-                      ndistrito: formatNumberInt($store.getters['reporte/results'].brecha.filter((obj)=>{return obj.cat === 'Distrito'})[0].v_ptierra),
+                      nnacional: formatNumberInt(reporteStore.results.brecha.filter((obj)=>{ return obj.cat === 'Nacional'})[0].v_ptierra),
+                      ndepartamento: formatNumberInt(reporteStore.results.brecha.filter((obj)=>{return obj.cat === 'Departamento'})[0].v_ptierra),
+                      nprovincia:formatNumberInt(reporteStore.results.brecha.filter((obj)=>{return obj.cat === 'Provincia'})[0].v_ptierra),
+                      ndistrito: formatNumberInt(reporteStore.results.brecha.filter((obj)=>{return obj.cat === 'Distrito'})[0].v_ptierra),
                     }"
           />
 
@@ -219,15 +219,15 @@
             :title="'Hogares que cocinan con leña (%)'"
             style="width:100%;height:49.25%;margin-top:0.5%;"
             :data="{
-                      nacional: formatNumber($store.getters['reporte/results'].brecha.filter((obj)=>{ return obj.cat === 'Nacional'})[0].ph_lenna,1),
-                      departamento: formatNumber($store.getters['reporte/results'].brecha.filter((obj)=>{return obj.cat === 'Departamento'})[0].ph_lenna,1),
-                      provincia:formatNumber($store.getters['reporte/results'].brecha.filter((obj)=>{return obj.cat === 'Provincia'})[0].ph_lenna,1),
-                      distrito: formatNumber($store.getters['reporte/results'].brecha.filter((obj)=>{return obj.cat === 'Distrito'})[0].ph_lenna,1),
+                      nacional: formatNumber(reporteStore.results.brecha.filter((obj)=>{ return obj.cat === 'Nacional'})[0].ph_lenna,1),
+                      departamento: formatNumber(reporteStore.results.brecha.filter((obj)=>{return obj.cat === 'Departamento'})[0].ph_lenna,1),
+                      provincia:formatNumber(reporteStore.results.brecha.filter((obj)=>{return obj.cat === 'Provincia'})[0].ph_lenna,1),
+                      distrito: formatNumber(reporteStore.results.brecha.filter((obj)=>{return obj.cat === 'Distrito'})[0].ph_lenna,1),
 
-                      nnacional: formatNumberInt($store.getters['reporte/results'].brecha.filter((obj)=>{ return obj.cat === 'Nacional'})[0].h_lenna),
-                      ndepartamento: formatNumberInt($store.getters['reporte/results'].brecha.filter((obj)=>{return obj.cat === 'Departamento'})[0].h_lenna),
-                      nprovincia:formatNumberInt($store.getters['reporte/results'].brecha.filter((obj)=>{return obj.cat === 'Provincia'})[0].h_lenna),
-                      ndistrito: formatNumberInt($store.getters['reporte/results'].brecha.filter((obj)=>{return obj.cat === 'Distrito'})[0].h_lenna),
+                      nnacional: formatNumberInt(reporteStore.results.brecha.filter((obj)=>{ return obj.cat === 'Nacional'})[0].h_lenna),
+                      ndepartamento: formatNumberInt(reporteStore.results.brecha.filter((obj)=>{return obj.cat === 'Departamento'})[0].h_lenna),
+                      nprovincia:formatNumberInt(reporteStore.results.brecha.filter((obj)=>{return obj.cat === 'Provincia'})[0].h_lenna),
+                      ndistrito: formatNumberInt(reporteStore.results.brecha.filter((obj)=>{return obj.cat === 'Distrito'})[0].h_lenna),
                     }"
           />
         </div>
@@ -247,15 +247,15 @@
             <LayerChartDist
               :title="'Población económicamente activa (%)'"
               :data="{
-                      nacional: formatNumber($store.getters['reporte/results'].censo2017.filter((obj)=>{ return obj.cat === 'Nacional'})[0].p_pea,1),
-                      departamento: formatNumber($store.getters['reporte/results'].censo2017.filter((obj)=>{return obj.cat === 'Departamento'})[0].p_pea,1),
-                      provincia:formatNumber($store.getters['reporte/results'].censo2017.filter((obj)=>{return obj.cat === 'Provincia'})[0].p_pea,1),
-                      distrito: formatNumber($store.getters['reporte/results'].censo2017.filter((obj)=>{return obj.cat === 'Distrito'})[0].p_pea,1),
+                      nacional: formatNumber(reporteStore.results.censo2017.filter((obj)=>{ return obj.cat === 'Nacional'})[0].p_pea,1),
+                      departamento: formatNumber(reporteStore.results.censo2017.filter((obj)=>{return obj.cat === 'Departamento'})[0].p_pea,1),
+                      provincia:formatNumber(reporteStore.results.censo2017.filter((obj)=>{return obj.cat === 'Provincia'})[0].p_pea,1),
+                      distrito: formatNumber(reporteStore.results.censo2017.filter((obj)=>{return obj.cat === 'Distrito'})[0].p_pea,1),
 
-                      nnacional: formatNumberInt($store.getters['reporte/results'].censo2017.filter((obj)=>{return obj.cat === 'Nacional'})[0].pea),
-                      ndepartamento: formatNumberInt($store.getters['reporte/results'].censo2017.filter((obj)=>{return obj.cat === 'Departamento'})[0].pea),
-                      nprovincia:formatNumberInt($store.getters['reporte/results'].censo2017.filter((obj)=>{return obj.cat === 'Provincia'})[0].pea),
-                      ndistrito: formatNumberInt($store.getters['reporte/results'].censo2017.filter((obj)=>{return obj.cat === 'Distrito'})[0].pea),
+                      nnacional: formatNumberInt(reporteStore.results.censo2017.filter((obj)=>{return obj.cat === 'Nacional'})[0].pea),
+                      ndepartamento: formatNumberInt(reporteStore.results.censo2017.filter((obj)=>{return obj.cat === 'Departamento'})[0].pea),
+                      nprovincia:formatNumberInt(reporteStore.results.censo2017.filter((obj)=>{return obj.cat === 'Provincia'})[0].pea),
+                      ndistrito: formatNumberInt(reporteStore.results.censo2017.filter((obj)=>{return obj.cat === 'Distrito'})[0].pea),
                     }"
             />
           </div>
@@ -263,15 +263,15 @@
             <LayerChartDist
               :title="'Población económicamente activa - desocupada (%)'"
               :data="{
-                      nacional: formatNumber($store.getters['reporte/results'].censo2017.filter((obj)=>{ return obj.cat === 'Nacional'})[0].p_pea_d,1),
-                      departamento: formatNumber($store.getters['reporte/results'].censo2017.filter((obj)=>{return obj.cat === 'Departamento'})[0].p_pea_d,1),
-                      provincia:formatNumber($store.getters['reporte/results'].censo2017.filter((obj)=>{return obj.cat === 'Provincia'})[0].p_pea_d,1),
-                      distrito: formatNumber($store.getters['reporte/results'].censo2017.filter((obj)=>{return obj.cat === 'Distrito'})[0].p_pea_d,1),
+                      nacional: formatNumber(reporteStore.results.censo2017.filter((obj)=>{ return obj.cat === 'Nacional'})[0].p_pea_d,1),
+                      departamento: formatNumber(reporteStore.results.censo2017.filter((obj)=>{return obj.cat === 'Departamento'})[0].p_pea_d,1),
+                      provincia:formatNumber(reporteStore.results.censo2017.filter((obj)=>{return obj.cat === 'Provincia'})[0].p_pea_d,1),
+                      distrito: formatNumber(reporteStore.results.censo2017.filter((obj)=>{return obj.cat === 'Distrito'})[0].p_pea_d,1),
 
-                      nnacional: formatNumberInt($store.getters['reporte/results'].censo2017.filter((obj)=>{return obj.cat === 'Nacional'})[0].pead),
-                      ndepartamento: formatNumberInt($store.getters['reporte/results'].censo2017.filter((obj)=>{return obj.cat === 'Departamento'})[0].pead),
-                      nprovincia:formatNumberInt($store.getters['reporte/results'].censo2017.filter((obj)=>{return obj.cat === 'Provincia'})[0].pead),
-                      ndistrito: formatNumberInt($store.getters['reporte/results'].censo2017.filter((obj)=>{return obj.cat === 'Distrito'})[0].pead),
+                      nnacional: formatNumberInt(reporteStore.results.censo2017.filter((obj)=>{return obj.cat === 'Nacional'})[0].pead),
+                      ndepartamento: formatNumberInt(reporteStore.results.censo2017.filter((obj)=>{return obj.cat === 'Departamento'})[0].pead),
+                      nprovincia:formatNumberInt(reporteStore.results.censo2017.filter((obj)=>{return obj.cat === 'Provincia'})[0].pead),
+                      ndistrito: formatNumberInt(reporteStore.results.censo2017.filter((obj)=>{return obj.cat === 'Distrito'})[0].pead),
                     }"
             />
           </div>
@@ -292,15 +292,15 @@
             <LayerChartDist
               :title="'Población que tiene DNI (%)'"
               :data="{
-                      nacional: formatNumber($store.getters['reporte/results'].censo2017.filter((obj)=>{ return obj.cat === 'Nacional'})[0].p_dni,1),
-                      departamento: formatNumber($store.getters['reporte/results'].censo2017.filter((obj)=>{return obj.cat === 'Departamento'})[0].p_dni,1),
-                      provincia:formatNumber($store.getters['reporte/results'].censo2017.filter((obj)=>{return obj.cat === 'Provincia'})[0].p_dni,1),
-                      distrito: formatNumber($store.getters['reporte/results'].censo2017.filter((obj)=>{return obj.cat === 'Distrito'})[0].p_dni,1),
+                      nacional: formatNumber(reporteStore.results.censo2017.filter((obj)=>{ return obj.cat === 'Nacional'})[0].p_dni,1),
+                      departamento: formatNumber(reporteStore.results.censo2017.filter((obj)=>{return obj.cat === 'Departamento'})[0].p_dni,1),
+                      provincia:formatNumber(reporteStore.results.censo2017.filter((obj)=>{return obj.cat === 'Provincia'})[0].p_dni,1),
+                      distrito: formatNumber(reporteStore.results.censo2017.filter((obj)=>{return obj.cat === 'Distrito'})[0].p_dni,1),
 
-                      nnacional: formatNumberInt($store.getters['reporte/results'].censo2017.filter((obj)=>{return obj.cat === 'Nacional'})[0].dni),
-                      ndepartamento: formatNumberInt($store.getters['reporte/results'].censo2017.filter((obj)=>{return obj.cat === 'Departamento'})[0].dni),
-                      nprovincia:formatNumberInt($store.getters['reporte/results'].censo2017.filter((obj)=>{return obj.cat === 'Provincia'})[0].dni),
-                      ndistrito: formatNumberInt($store.getters['reporte/results'].censo2017.filter((obj)=>{return obj.cat === 'Distrito'})[0].dni),
+                      nnacional: formatNumberInt(reporteStore.results.censo2017.filter((obj)=>{return obj.cat === 'Nacional'})[0].dni),
+                      ndepartamento: formatNumberInt(reporteStore.results.censo2017.filter((obj)=>{return obj.cat === 'Departamento'})[0].dni),
+                      nprovincia:formatNumberInt(reporteStore.results.censo2017.filter((obj)=>{return obj.cat === 'Provincia'})[0].dni),
+                      ndistrito: formatNumberInt(reporteStore.results.censo2017.filter((obj)=>{return obj.cat === 'Distrito'})[0].dni),
                     }"
             />
           </div>
@@ -309,15 +309,15 @@
             <LayerChartDist
               :title="'Población indocumentada (%)'"
               :data="{
-                      nacional: formatNumber($store.getters['reporte/results'].censo2017.filter((obj)=>{ return obj.cat === 'Nacional'})[0].p_no_docum,1),
-                      departamento: formatNumber($store.getters['reporte/results'].censo2017.filter((obj)=>{return obj.cat === 'Departamento'})[0].p_no_docum,1),
-                      provincia:formatNumber($store.getters['reporte/results'].censo2017.filter((obj)=>{return obj.cat === 'Provincia'})[0].p_no_docum,1),
-                      distrito: formatNumber($store.getters['reporte/results'].censo2017.filter((obj)=>{return obj.cat === 'Distrito'})[0].p_no_docum,1),
+                      nacional: formatNumber(reporteStore.results.censo2017.filter((obj)=>{ return obj.cat === 'Nacional'})[0].p_no_docum,1),
+                      departamento: formatNumber(reporteStore.results.censo2017.filter((obj)=>{return obj.cat === 'Departamento'})[0].p_no_docum,1),
+                      provincia:formatNumber(reporteStore.results.censo2017.filter((obj)=>{return obj.cat === 'Provincia'})[0].p_no_docum,1),
+                      distrito: formatNumber(reporteStore.results.censo2017.filter((obj)=>{return obj.cat === 'Distrito'})[0].p_no_docum,1),
 
-                      nnacional: formatNumberInt($store.getters['reporte/results'].censo2017.filter((obj)=>{return obj.cat === 'Nacional'})[0].no_docum),
-                      ndepartamento: formatNumberInt($store.getters['reporte/results'].censo2017.filter((obj)=>{return obj.cat === 'Departamento'})[0].no_docum),
-                      nprovincia:formatNumberInt($store.getters['reporte/results'].censo2017.filter((obj)=>{return obj.cat === 'Provincia'})[0].no_docum),
-                      ndistrito: formatNumberInt($store.getters['reporte/results'].censo2017.filter((obj)=>{return obj.cat === 'Distrito'})[0].no_docum),
+                      nnacional: formatNumberInt(reporteStore.results.censo2017.filter((obj)=>{return obj.cat === 'Nacional'})[0].no_docum),
+                      ndepartamento: formatNumberInt(reporteStore.results.censo2017.filter((obj)=>{return obj.cat === 'Departamento'})[0].no_docum),
+                      nprovincia:formatNumberInt(reporteStore.results.censo2017.filter((obj)=>{return obj.cat === 'Provincia'})[0].no_docum),
+                      ndistrito: formatNumberInt(reporteStore.results.censo2017.filter((obj)=>{return obj.cat === 'Distrito'})[0].no_docum),
                     }"
             />
           </div>
@@ -342,8 +342,13 @@ import LayerChartDist from "~/components/reportea3/LayerChartDist.vue";
 import Leyenda from "~/components/reportea3/Leyenda.vue";
 import numberFormat from "~/mixins/numberFormat.js";
 import Fuente from '~/components/reportea3/Fuente';
+import { useReporteStore } from '~/stores/reporte'
 
 export default {
+  setup() {
+    const reporteStore = useReporteStore()
+    return { reporteStore }
+  },
   name: 'principales-indicadores',
   mixins: [numberFormat],
   data: () => {
@@ -429,28 +434,28 @@ export default {
 }
 
 /* Leyenda */
-/deep/ .leyenda .item {
+:deep(.leyenda .item) {
   font-size: 16px;
   padding-right: 18px;
 }
-/deep/ .leyenda .item .legend-diamond {
+:deep(.leyenda .item .legend-diamond) {
   width: 12px;
   height: 12px;
 }
 
-/deep/ .leyenda .item .legend-diamond-nacional {
+:deep(.leyenda .item .legend-diamond-nacional) {
   background-color: #ff6356 !important  ;
 }
 
-/deep/ .leyenda .item .legend-diamond-departamento {
+:deep(.leyenda .item .legend-diamond-departamento) {
   background-color: #18226d !important  ;
 }
 
-/deep/ .leyenda .item .legend-diamond-provincia {
+:deep(.leyenda .item .legend-diamond-provincia) {
   background-color: #617ab6 !important  ;
 }
 
-/deep/ .leyenda .item .legend-diamond-distrito {
+:deep(.leyenda .item .legend-diamond-distrito) {
   background-color: #179aff !important  ;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div :class="$options.name" @dblclick="zoomo">
+    <div :class="componentName" @dblclick="zoomo">
         <div class="zona-title">
             VIOLENCIA DE GÉNERO<br>
             DISTRITO DE  <span class="boldi" v-text="this.$store.getters['reportecem/results'].ubigeo.nom_dist"></span>

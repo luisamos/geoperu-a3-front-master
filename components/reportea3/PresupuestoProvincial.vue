@@ -7,7 +7,7 @@
         Presupuesto de la Municipalidad (S/)
         <br>Provincial de 
         <span
-          v-text="$store.getters['reporte/results'].ejecutora[0].nom_prov"
+          v-text="reporteStore.results.ejecutora[0].nom_prov"
         ></span>,
         <br>2016 - 2019 <br>
       </span>
@@ -18,7 +18,7 @@
         <!-- 2019 -->
         <HorizontalBarchart  
           style="width:100%;height:100%;"
-          :data="$store.getters['reporte/results'].ejecucion.filter((obj)=>obj.ano_eje ==='2019')[0]"
+          :data="reporteStore.results.ejecucion.filter((obj)=>obj.ano_eje ==='2019')[0]"
           :legendClass="1"
           :legendColor="1"
         />
@@ -58,7 +58,7 @@
       <div style="width:100%;height:28.6%;" @dblclick="zoomo">
         <HorizontalBarchart  
           style="width:100%;height:100%;"
-          :data="$store.getters['reporte/results'].ejecucion.filter((obj)=>obj.ano_eje ==='2018')[0]"
+          :data="reporteStore.results.ejecucion.filter((obj)=>obj.ano_eje ==='2018')[0]"
           :legendClass="2"
           :legendColor="1"
         />
@@ -68,7 +68,7 @@
       <div style="width:100%;height:28.6%;" @dblclick="zoomo">
         <HorizontalBarchart
           style="width:100%;height:100%;"
-          :data="$store.getters['reporte/results'].ejecucion.filter((obj)=>obj.ano_eje ==='2017')[0]"
+          :data="reporteStore.results.ejecucion.filter((obj)=>obj.ano_eje ==='2017')[0]"
           :legendClass="2"
           :legendColor="1"
         />
@@ -78,7 +78,7 @@
       <div style="width:100%;height:28.6%;" @dblclick="zoomo">
       <HorizontalBarchart
         style="width:100%;height:100%;"
-        :data="$store.getters['reporte/results'].ejecucion.filter((obj)=>obj.ano_eje ==='2016')[0]"
+        :data="reporteStore.results.ejecucion.filter((obj)=>obj.ano_eje ==='2016')[0]"
         :legendClass="2"
         :legendColor="1"
       />
@@ -118,7 +118,12 @@
 
 <script>
 import HorizontalBarchart from "~/components/reportea3/HorizontalBarchart.vue";
+import { useReporteStore } from '~/stores/reporte'
 export default {
+  setup() {
+    const reporteStore = useReporteStore()
+    return { reporteStore }
+  },
   components: {
     HorizontalBarchart
   }

@@ -9,7 +9,7 @@
         <button
           class="btn btn-danger"
           @click="getPdfMap()"
-          :disabled="$store.getters['Loading/isLoading']"
+          :disabled="loadingStore.isLoading"
         >Descargar mapa</button>
       </div>
     </transition>
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import Highcharts from "~/plugins/highmaps";
+import Highcharts from "~/lib/highmaps.js";
 import pdfPage from "~/mixins/PDFPrint.js";
 import * as topojson from "topojson";
 
@@ -35,25 +35,25 @@ export default {
     };
   },
   created() {
-    this.data = this.$store.getters["reporte/results"].geojson[0];
+    this.data = reporteStore.results.geojson[0];
     this.superficie = this.$store.getters[
       "reporte/results"
     ].ejecutora[0].superficie;
 
     this.selected =
-      this.$store.getters["reporte/tipo"] === "prov"
+      reporteStore.tipo === "prov"
         ? this.$store.getters[
             "reporte/results"
           ].ejecutoraProv[0].ubigeo.substring(0, 4)
-        : this.$store.getters["reporte/tipo"] === "dpto"
+        : reporteStore.tipo === "dpto"
         ? this.$store.getters[
             "reporte/results"
           ].ejecutoraProv[0].ubigeo.substring(0, 2)
-        : this.$store.getters["reporte/results"].ejecutora[0].ubigeo;
+        : reporteStore.results.ejecutora[0].ubigeo;
 
-    if (this.$store.getters["reporte/tipo"] !== "dpto") {
+    if (reporteStore.tipo !== "dpto") {
       this.densidad =
-        this.$store.getters["reporte/results"].censo2017.filter(
+        reporteStore.results.censo2017.filter(
           obj => obj.cat === "Distrito"
         )[0].pob_total / parseFloat(this.superficie);
     } else {
@@ -67,7 +67,7 @@ export default {
     var name;
     var capitalColor;
 
-    if (this.$store.getters["reporte/tipo"] === "prov") {
+    if (reporteStore.tipo === "prov") {
       color = "#617ab6";
       name = "Provincia";
       capitalColor = "#30cd58";
@@ -86,7 +86,7 @@ export default {
 
     let selected = [{ c: this.selected }];
 
-    if (this.$store.getters["reporte/tipo"] === "dpto") {
+    if (reporteStore.tipo === "dpto") {
       selected.push(
         { c: "1508" },
         { c: "1502" },
@@ -263,7 +263,7 @@ export default {
         .dispatch("reporte/fetchMapImage", "a3")
         .then(oMapImage => {
           this.pdfPage(oMapImage).then(pdf => {
-            pdf.save(`Mapa ${this.$store.getters["reporte/description"]}.pdf`);
+            pdf.save(`Mapa ${reporteStore.description}.pdf`);
             this.$store.dispatch("Loading/STOP");
           });
         })

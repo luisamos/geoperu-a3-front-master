@@ -22,14 +22,14 @@
             <br />
           </span>
           <span 
-             v-if="$store.getters['reporte/tipo'] === 'dist'||$store.getters['reporte/tipo'] === 'prov'"
+             v-if="reporteStore.tipo === 'dist'||reporteStore.tipo === 'prov'"
             class="label-value label-provincia" style="margin-left:-20px">
             <b v-text="provincia"></b>
             <b>%</b>
             <br />
           </span>
           <span
-            v-if="$store.getters['reporte/tipo'] === 'dist'"
+            v-if="reporteStore.tipo === 'dist'"
             class="label-value label-distrito"
             style="margin-left:-16px"
           >
@@ -61,6 +61,7 @@ import TextUniverso from "~/components/reportea3/TextUniverso";
 import numberFormat from "~/mixins/numberFormat.js";
 import Zoom from "~/mixins/zoom.js";
 import Vue from "vue";
+import { useReporteStore } from '~/stores/reporte'
 
 if (typeof Highcharts === "object") {
   highchartsMore(Highcharts);
@@ -68,6 +69,10 @@ if (typeof Highcharts === "object") {
 }
 
 export default {
+  setup() {
+    const reporteStore = useReporteStore()
+    return { reporteStore }
+  },
   mixins: [numberFormat, Zoom],
   props: {
     ctitle: {
@@ -168,10 +173,10 @@ export default {
     this.id = "ele" + this._uid;
   },
   mounted() {
-    console.log(this.$store.getters['reporte/isRegion'])
-    if( this.$store.getters['reporte/isRegion'] ){
+    console.log(reporteStore.isRegion)
+    if( reporteStore.isRegion ){
       this.selectedCategorie = 'two'
-    } else if( this.$store.getters['reporte/isMancomunidad'] ){
+    } else if( reporteStore.isMancomunidad ){
       this.selectedCategorie = 'three'
     } else {
       this.selectedCategorie = this.categorie
@@ -193,7 +198,7 @@ export default {
         }
       ];
 
-      if ( this.$store.getters["reporte/tipo"] === "dpto" ){
+      if ( reporteStore.tipo === "dpto" ){
         x.push({
           // Track for Move
           outerRadius: "70%",
@@ -213,7 +218,7 @@ export default {
         })
       }
 
-      if (this.$store.getters["reporte/tipo"] === "prov" || this.$store.getters["reporte/tipo"] === "dist" ){
+      if (reporteStore.tipo === "prov" || reporteStore.tipo === "dist" ){
         x.push({
           // Track for Exercise
           outerRadius: "60%",
@@ -224,7 +229,7 @@ export default {
         })
       }
       
-      if (this.$store.getters["reporte/tipo"] === "dist") {
+      if (reporteStore.tipo === "dist") {
         x.push({
           // Track for Stand
           outerRadius: "40%",
@@ -262,7 +267,7 @@ export default {
       ];
 
 
-       if ( this.$store.getters["reporte/tipo"] === "dpto" ){
+       if ( reporteStore.tipo === "dpto" ){
          y.push( {
           name: this.categories[this.selectedCategorie].c,
           data: [
@@ -310,7 +315,7 @@ export default {
         })
        }
 
-      if (this.$store.getters["reporte/tipo"] === "prov" || this.$store.getters["reporte/tipo"] === "dist" ){
+      if (reporteStore.tipo === "prov" || reporteStore.tipo === "dist" ){
         y.push(  {
           name: this.categories[this.selectedCategorie].b,
           data: [
@@ -336,7 +341,7 @@ export default {
       }
 
 
-      if (this.$store.getters["reporte/tipo"] === "dist") {
+      if (reporteStore.tipo === "dist") {
         y.push({
           name: this.categories[this.selectedCategorie].a,
           data: [

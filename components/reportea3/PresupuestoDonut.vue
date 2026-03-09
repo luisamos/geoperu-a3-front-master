@@ -30,7 +30,7 @@
     >
     <Fuente
               style="height:3%;margin-top:12px;margin-bottom:8px;"
-              :label="`Fuente: MEF - Consulta Amigable, actualización al <strong>${$store.getters['reporte/results'].mef[0].fecha}</strong>`"
+              :label="`Fuente: MEF - Consulta Amigable, actualización al <strong>${reporteStore.results.mef[0].fecha}</strong>`"
             />
       <strong>NOTA</strong>:
       <br />- No se consideran reservas, pensiones, adquisición de activos financieros ni
@@ -50,7 +50,12 @@
 import SlicedCircularDonutChart from "~/components/Dumb/SlicedCircularDonutChart";
 import numberFormat from "~/mixins/numberFormat";
 import Fuente from '~/components/reportea3/Fuente';
+import { useReporteStore } from '~/stores/reporte'
 export default {
+  setup() {
+    const reporteStore = useReporteStore()
+    return { reporteStore }
+  },
   mixins: [numberFormat],
   data() {
     return {
@@ -85,14 +90,14 @@ export default {
     Fuente
   },
   created() {
-    let gcap = this.$store.getters["reporte/results"].presupuesto2020.filter(
+    let gcap = reporteStore.results.presupuesto2020.filter(
       obj => {
         return (
           obj.cat === "Departamento" && obj.tipo === "1" && obj.monto !== "0"
         );
       }
     );
-    let gord = this.$store.getters["reporte/results"].presupuesto2020.filter(
+    let gord = reporteStore.results.presupuesto2020.filter(
       obj => {
         return (
           obj.cat === "Departamento" && obj.tipo === "2" && obj.monto !== "0"
@@ -104,7 +109,7 @@ export default {
     this.chart.title =
       '<div style="font-size:25px;font-weight:800">' +
       this.cutNumberToText(
-        this.$store.getters["reporte/results"].presupuesto2020.reduce(function(
+        reporteStore.results.presupuesto2020.reduce(function(
               prev,
               cur
             ) {

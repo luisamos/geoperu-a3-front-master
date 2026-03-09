@@ -1,5 +1,5 @@
 <template>
-  <div :class="$options.name" @dblclick="zoomo">
+  <div class="poblacion" @dblclick="zoomo">
     <div class="cabecera">
       <div class="title">
         <span >Población</span>
@@ -16,26 +16,26 @@
           <div :style="{'width':this.labelWidth+'%','float':'left','text-align':'center'}">
             <span
               class="label-nacional"
-              v-text="formatNumber( $store.getters['reporte/results'].censo2017.filter((obj)=>obj.cat ==='Nacional')[0].pob_total, 0 )"
+              v-text="formatNumber( reporteStore.results.censo2017.filter((obj)=>obj.cat ==='Nacional')[0].pob_total, 0 )"
             ></span>
           </div>
-          
+
           <div :style="{'width':this.labelWidth+'%','float':'left','text-align':'center'}">
             <span
               class="label-departamento"
-              v-text="formatNumber( $store.getters['reporte/results'].censo2017.filter((obj)=>obj.cat ==='Departamento')[0].pob_total, 0 )"
+              v-text="formatNumber( reporteStore.results.censo2017.filter((obj)=>obj.cat ==='Departamento')[0].pob_total, 0 )"
             ></span>
           </div>
-           <div v-if="$store.getters['reporte/tipo'] === 'dist'||$store.getters['reporte/tipo'] === 'prov'" :style="{'width':this.labelWidth+'%','float':'left','text-align':'center'}">
+           <div v-if="reporteStore.tipo === 'dist'||reporteStore.tipo === 'prov'" :style="{'width':this.labelWidth+'%','float':'left','text-align':'center'}">
             <span
               class="label-provincia"
-              v-text="formatNumber( $store.getters['reporte/results'].censo2017.filter((obj)=>obj.cat ==='Provincia')[0].pob_total, 0 )"
+              v-text="formatNumber( reporteStore.results.censo2017.filter((obj)=>obj.cat ==='Provincia')[0].pob_total, 0 )"
             ></span>
           </div>
-            <div v-if="$store.getters['reporte/tipo'] === 'dist'" :style="{'width':this.labelWidth+'%','float':'left','text-align':'center'}">
+            <div v-if="reporteStore.tipo === 'dist'" :style="{'width':this.labelWidth+'%','float':'left','text-align':'center'}">
             <span
               class="label-distrito"
-              v-text="formatNumber( $store.getters['reporte/results'].censo2017.filter((obj)=>obj.cat ==='Distrito')[0].pob_total, 0 )"
+              v-text="formatNumber( reporteStore.results.censo2017.filter((obj)=>obj.cat ==='Distrito')[0].pob_total, 0 )"
             ></span>
           </div>
         </div>
@@ -49,25 +49,25 @@
           <div :style="{'width':this.labelWidth+'%','float':'left','text-align':'center'}">
             <span
               class="label-nacional"
-              v-text="formatNumber( $store.getters['reporte/results'].brecha.filter((obj)=>obj.cat ==='Nacional')[0].num_viv_op, 0 )"
+              v-text="formatNumber( reporteStore.results.brecha.filter((obj)=>obj.cat ==='Nacional')[0].num_viv_op, 0 )"
             ></span>
           </div>
            <div :style="{'width':this.labelWidth+'%','float':'left','text-align':'center'}">
             <span
               class="label-departamento"
-              v-text="formatNumber( $store.getters['reporte/results'].brecha.filter((obj)=>obj.cat ==='Departamento')[0].num_viv_op, 0 )"
+              v-text="formatNumber( reporteStore.results.brecha.filter((obj)=>obj.cat ==='Departamento')[0].num_viv_op, 0 )"
             ></span>
           </div>
-           <div v-if="$store.getters['reporte/tipo'] === 'dist'||$store.getters['reporte/tipo'] === 'prov'" :style="{'width':this.labelWidth+'%','float':'left','text-align':'center'}">
+           <div v-if="reporteStore.tipo === 'dist'||reporteStore.tipo === 'prov'" :style="{'width':this.labelWidth+'%','float':'left','text-align':'center'}">
             <span
               class="label-provincia"
-              v-text="formatNumber( $store.getters['reporte/results'].brecha.filter((obj)=>obj.cat ==='Provincia')[0].num_viv_op, 0 )"
+              v-text="formatNumber( reporteStore.results.brecha.filter((obj)=>obj.cat ==='Provincia')[0].num_viv_op, 0 )"
             ></span>
           </div>
-           <div v-if="$store.getters['reporte/tipo'] === 'dist'" :style="{'width':this.labelWidth+'%','float':'left','text-align':'center'}">
+           <div v-if="reporteStore.tipo === 'dist'" :style="{'width':this.labelWidth+'%','float':'left','text-align':'center'}">
             <span
               class="label-distrito"
-              v-text="formatNumber( $store.getters['reporte/results'].brecha.filter((obj)=>obj.cat ==='Distrito')[0].num_viv_op, 0 )"
+              v-text="formatNumber( reporteStore.results.brecha.filter((obj)=>obj.cat ==='Distrito')[0].num_viv_op, 0 )"
             ></span>
           </div>
         </div>
@@ -81,62 +81,64 @@
           <div :style="{'width':this.labelWidth+'%','float':'left','text-align':'center'}">
             <span
               class="label-nacional"
-              v-text="formatNumber( $store.getters['reporte/results'].brecha.filter((obj)=>obj.cat ==='Nacional')[0].num_hogare, 0 )"
+              v-text="formatNumber( reporteStore.results.brecha.filter((obj)=>obj.cat ==='Nacional')[0].num_hogare, 0 )"
             ></span>
           </div>
           <div :style="{'width':this.labelWidth+'%','float':'left','text-align':'center'}">
             <span
               class="label-departamento"
-              v-text="formatNumber( $store.getters['reporte/results'].brecha.filter((obj)=>obj.cat ==='Departamento')[0].num_hogare, 0 )"
+              v-text="formatNumber( reporteStore.results.brecha.filter((obj)=>obj.cat ==='Departamento')[0].num_hogare, 0 )"
             ></span>
           </div>
-          <div v-if="$store.getters['reporte/tipo'] === 'dist'||$store.getters['reporte/tipo'] === 'prov'" :style="{'width':this.labelWidth+'%','float':'left','text-align':'center'}">
+          <div v-if="reporteStore.tipo === 'dist'||reporteStore.tipo === 'prov'" :style="{'width':this.labelWidth+'%','float':'left','text-align':'center'}">
             <span
               class="label-provincia"
-              v-text="formatNumber( $store.getters['reporte/results'].brecha.filter((obj)=>obj.cat ==='Provincia')[0].num_hogare, 0 )"
+              v-text="formatNumber( reporteStore.results.brecha.filter((obj)=>obj.cat ==='Provincia')[0].num_hogare, 0 )"
             ></span>
           </div>
 
-           <div v-if="$store.getters['reporte/tipo'] === 'dist'" :style="{'width':this.labelWidth+'%','float':'left','text-align':'center'}">
+           <div v-if="reporteStore.tipo === 'dist'" :style="{'width':this.labelWidth+'%','float':'left','text-align':'center'}">
             <span
               class="label-distrito"
-              v-text="formatNumber( $store.getters['reporte/results'].brecha.filter((obj)=>obj.cat ==='Distrito')[0].num_hogare, 0 )"
+              v-text="formatNumber( reporteStore.results.brecha.filter((obj)=>obj.cat ==='Distrito')[0].num_hogare, 0 )"
             ></span>
           </div>
         </div>
       </div>
       <Fuente style="height:10%;" label="Fuente: INEI - Censos Nacionales, 2017" />
-      <!--div>
-        <span class="fuente">Fuente: INEI - Censos Nacionales, 2017</span>
-      </div-->
     </div>
   </div>
 </template>
 
 <script>
+import { useReporteStore } from '~/stores/reporte'
 import numberFormat from "~/mixins/numberFormat.js";
-import Leyenda from "~/components/reportea3/Leyenda";
-import Fuente from "~/components/reportea3/Fuente";
+import Leyenda from "~/components/reportea3/Leyenda.vue";
+import Fuente from "~/components/reportea3/Fuente.vue";
 
 export default {
   name: 'poblacion',
   mixins: [numberFormat],
+  components: {
+    Leyenda,
+    Fuente
+  },
+  setup() {
+    const reporteStore = useReporteStore()
+    return { reporteStore }
+  },
   data: () => {
       return {
           labelWidth:25
       }
   },
   mounted() {
-      if( this.$store.getters['reporte/tipo'] === 'prov' ) {
+      if( this.reporteStore.tipo === 'prov' ) {
           this.labelWidth = 33.3
       }
-      if( this.$store.getters['reporte/tipo'] === 'dpto' ) {
+      if( this.reporteStore.tipo === 'dpto' ) {
           this.labelWidth = 48.3
       }
-  },
-  components: {
-    Leyenda,
-    Fuente
   }
 };
 </script>
@@ -213,27 +215,27 @@ export default {
   width: 100%;
 }
 
-/deep/ .leyenda .item {
+:deep(.leyenda .item) {
   font-size: 10px;
 }
-/deep/ .leyenda .item .legend-circle {
+:deep(.leyenda .item .legend-circle) {
   width: 9px;
   height: 9px;
 }
 
-/deep/ .leyenda .item .legend-circle-nacional {
+:deep(.leyenda .item .legend-circle-nacional) {
   background-color: #ff6356 !important;
 }
 
-/deep/ .leyenda .item .legend-circle-departamento {
+:deep(.leyenda .item .legend-circle-departamento) {
   background-color: #18226d !important;
 }
 
-/deep/ .leyenda .item .legend-circle-provincia {
+:deep(.leyenda .item .legend-circle-provincia) {
   background-color: #617ab6 !important;
 }
 
-/deep/ .leyenda .item .legend-circle-distrito {
+:deep(.leyenda .item .legend-circle-distrito) {
   background-color: #179aff !important;
 }
 

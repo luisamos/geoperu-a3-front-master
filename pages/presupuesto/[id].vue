@@ -143,7 +143,7 @@ import LogoSegdi from "~/components/LogoSegdi";
 import PresupuestoDonut from "~/components/reportea3/PresupuestoDonut";
 import Poblacion from "~/components/reportea3/poblacion";
 import Zona from "~/components/reportea3/zona";
-import Ubigeo from "~/static/ubigeo.js";
+import Ubigeo from "~/public/ubigeo.js";
 import LoadingGif from "~/components/reportea3/LoadingGif";
 import gaEvent from "~/mixins/GoogleAnalytics";
 import formatSvgThenScreenShot from "~/mixins/ScreenShot";

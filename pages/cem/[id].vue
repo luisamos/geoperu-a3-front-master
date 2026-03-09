@@ -64,7 +64,7 @@ import LoadingGif from "~/components/reportea3/LoadingGif";
 import gaEvent from "~/mixins/GoogleAnalytics";
 import formatSvgThenScreenShot from "~/mixins/ScreenShot";
 import imageToPdf from "~/mixins/PDFPrint";
-import Ubigeo from "~/static/ubigeo.js";
+import Ubigeo from "~/public/ubigeo.js";
 import Enlace from "~/components/Enlace";
 import Fuente from "~/components/reportea3/Fuente";
 

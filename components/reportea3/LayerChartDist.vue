@@ -3,7 +3,7 @@
     <div style="line-height:10px;height:12%;padding-left:15%;padding-right:15%;text-align:center;">
       <span class="chart-title" v-text="title"></span>
     </div>
-    <div style="height:88%;width:100%;" v-if="$store.getters['reporte/tipo']==='dist'">
+    <div style="height:88%;width:100%;" v-if="reporteStore.tipo==='dist'">
     <svg
       version="1.1"
       :id="id"
@@ -177,7 +177,7 @@
         <use id="use" v-bind:xlink:href="'#'+ selectedPolygonText" />
       </svg>
     </div>
-    <div style="height:84%;width:100%;" v-if="$store.getters['reporte/tipo']==='prov'">
+    <div style="height:84%;width:100%;" v-if="reporteStore.tipo==='prov'">
       <svg
         version="1.1"
         :id="id"
@@ -318,7 +318,7 @@
       </svg>
     </div>
 
-     <div style="height:84%;width:100%;" v-if="$store.getters['reporte/tipo']==='dpto'">
+     <div style="height:84%;width:100%;" v-if="reporteStore.tipo==='dpto'">
       <svg
         version="1.1"
         :id="id"
@@ -440,7 +440,12 @@
 </template>
 
 <script>
+import { useReporteStore } from '~/stores/reporte'
 export default {
+  setup() {
+    const reporteStore = useReporteStore()
+    return { reporteStore }
+  },
   props: {
     title: {
       type: String,
@@ -469,7 +474,7 @@ export default {
     };
   },
   mounted() {
-    if (this.$store.getters["reporte/tipo"] === "dist") {
+    if (reporteStore.tipo === "dist") {
       this.id = "dist-layer-chart-" + this._uid;
     } else {
       this.id = "prov-layer-chart-" + this._uid;

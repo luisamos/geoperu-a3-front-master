@@ -1,12 +1,12 @@
 <template>
-  <div :class="$options.name"
+  <div :class="componentName"
     @dblclick="zoomo"
   > 
       <div class="left-content">
         
-        <Leyenda v-if="($store.getters['reporte/tipo'] === 'dist')" order="desc" :rango="{ min:1, max: 2 }" />
-        <Leyenda v-if="($store.getters['reporte/tipo'] === 'prov')" order="desc" :rango="{ min:2, max: 3 }" />
-        <Leyenda v-if="($store.getters['reporte/tipo'] === 'dpto')" order="desc" :rango="{ min:3, max: 4 }" />
+        <Leyenda v-if="(reporteStore.tipo === 'dist')" order="desc" :rango="{ min:1, max: 2 }" />
+        <Leyenda v-if="(reporteStore.tipo === 'prov')" order="desc" :rango="{ min:2, max: 3 }" />
+        <Leyenda v-if="(reporteStore.tipo === 'dpto')" order="desc" :rango="{ min:3, max: 4 }" />
         
         <div class="chart" id="area"></div>
         <Fuente style="height:10%;" label="Fuente: INEI - Perú: Población total proyectada, según departamento, provincia y distrito, 2022" />
@@ -23,19 +23,19 @@
           </div>
           <div style="text-align:center;">
             <span
-              v-if="$store.getters['reporte/tipo']==='dpto'"
+              v-if="reporteStore.tipo==='dpto'"
               class="legend label-departamento"
-              v-text="parseFloat($store.getters['reporte/results'].tasa.filter((obj)=>obj.cat ==='departamento')[0].tcpro10_18).toFixed(1)"
+              v-text="parseFloat(reporteStore.results.tasa.filter((obj)=>obj.cat ==='departamento')[0].tcpro10_18).toFixed(1)"
             ></span>
             <span
-              v-if="$store.getters['reporte/tipo']==='dist'"
+              v-if="reporteStore.tipo==='dist'"
               class="legend label-distrito"
-              v-text="parseFloat($store.getters['reporte/results'].tasa.filter((obj)=>obj.cat ==='distrito')[0].tcpro10_18).toFixed(1)"
+              v-text="parseFloat(reporteStore.results.tasa.filter((obj)=>obj.cat ==='distrito')[0].tcpro10_18).toFixed(1)"
             ></span>
             <span
-              v-if="$store.getters['reporte/tipo']!=='dpto'"
+              v-if="reporteStore.tipo!=='dpto'"
               class="legend label-provincia"
-              v-text="parseFloat($store.getters['reporte/results'].tasa.filter((obj)=>obj.cat ==='provincia')[0].tcpro10_18).toFixed(1)"
+              v-text="parseFloat(reporteStore.results.tasa.filter((obj)=>obj.cat ==='provincia')[0].tcpro10_18).toFixed(1)"
             ></span>
           </div>
         </div>
@@ -49,8 +49,13 @@ import Highcharts from "highcharts";
 import numberFormat from "~/mixins/numberFormat.js";
 import Fuente from "~/components/reportea3/Fuente";
 import Leyenda from "~/components/reportea3/Leyenda";
+import { useReporteStore } from '~/stores/reporte'
 
 export default {
+  setup() {
+    const reporteStore = useReporteStore()
+    return { reporteStore }
+  },
   name: 'proyeccion',
   mixins: [numberFormat],
   components: {
@@ -59,25 +64,26 @@ export default {
   },
   data: () => {
     return {
+      componentName: 'proyeccion',
       data: null
     };
   },
   mounted() {
-    let nac = this.$store.getters["reporte/results"].poblacion.filter(obj => {
+    let nac = reporteStore.results.poblacion.filter(obj => {
       return obj.nombre === "Nacional";
     })[0];
-    let dep = this.$store.getters["reporte/results"].poblacion.filter(obj => {
+    let dep = reporteStore.results.poblacion.filter(obj => {
       return obj.nombre === "Departamento";
     })[0];
-    let pro = this.$store.getters["reporte/results"].poblacion.filter(obj => {
+    let pro = reporteStore.results.poblacion.filter(obj => {
       return obj.nombre === "Provincia";
     })[0];
-    let dis = this.$store.getters["reporte/results"].poblacion.filter(obj => {
+    let dis = reporteStore.results.poblacion.filter(obj => {
       return obj.nombre === "Distrito";
     })[0];
 
     var that = this;
-    if (this.$store.getters["reporte/tipo"] === "dist") {
+    if (reporteStore.tipo === "dist") {
       this.data = [
         {
           name: "Provincia",
@@ -174,7 +180,7 @@ export default {
       ];
     }
 
-    if (this.$store.getters["reporte/tipo"] === "prov") {
+    if (reporteStore.tipo === "prov") {
       this.data = [
         {
           name: "Departamento",
@@ -273,7 +279,7 @@ export default {
       ];
     }
 
-    if (this.$store.getters["reporte/tipo"] === "dpto") {
+    if (reporteStore.tipo === "dpto") {
       this.data = [
         {
           name: "Nacional",
@@ -524,33 +530,33 @@ export default {
   text-align: center;
 }
 
-/deep/ .leyenda {
+:deep(.leyenda) {
   position:absolute;
   width:auto;
   left: 20%;
 }
 
-/deep/ .leyenda .item {
+:deep(.leyenda .item) {
   font-size: 10px;
 }
-/deep/ .leyenda .item .legend-circle {
+:deep(.leyenda .item .legend-circle) {
   width: 9px;
   height: 9px;
 }
 
-/deep/ .leyenda .item .legend-circle-nacional {
+:deep(.leyenda .item .legend-circle-nacional) {
   background-color: #ff6356 !important;
 }
 
-/deep/ .leyenda .item .legend-circle-departamento {
+:deep(.leyenda .item .legend-circle-departamento) {
   background-color: #18226d !important;
 }
 
-/deep/ .leyenda .item .legend-circle-provincia {
+:deep(.leyenda .item .legend-circle-provincia) {
   background-color: #617ab6 !important;
 }
 
-/deep/ .leyenda .item .legend-circle-distrito {
+:deep(.leyenda .item .legend-circle-distrito) {
   background-color: #179aff !important;
 }
 

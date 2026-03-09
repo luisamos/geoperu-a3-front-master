@@ -1,7 +1,7 @@
 <template>
 <div>
-  <div :class="$options.name" v-if="order === 'asc'">
-    <span class="item" v-if="$store.getters['reporte/tipo'] === 'dist' && this.nivel <= 1">
+  <div :class="componentName" v-if="order === 'asc'">
+    <span class="item" v-if="reporteStore.tipo === 'dist' && this.nivel <= 1">
       <span :class="['legend-'+shape, 'legend-'+shape+'-distrito']"></span>
       Distrito
     </span>
@@ -27,7 +27,7 @@
     </span>
   </div>
   
-  <div :class="$options.name" v-if="order === 'desc'">
+  <div :class="componentName" v-if="order === 'desc'">
     <span class="item" v-if="show('nacional')">
         <span :class="['legend-'+shape, 'legend-'+shape+'-nacional']"></span>
         Nacional
@@ -46,11 +46,11 @@
         Departamento
       </span>
     </span>
-    <span class="item"  v-if="($store.getters['reporte/tipo'] === 'prov'||$store.getters['reporte/tipo'] === 'dist') && show('provincia') " >
+    <span class="item"  v-if="(reporteStore.tipo === 'prov'||reporteStore.tipo === 'dist') && show('provincia') " >
       <span :class="['legend-'+shape, 'legend-'+shape+'-provincia']"></span>
       Provincia
     </span>
-    <span class="item"  v-if="($store.getters['reporte/tipo'] === 'dist') && show('distrito')">
+    <span class="item"  v-if="(reporteStore.tipo === 'dist') && show('distrito')">
       <span :class="['legend-'+shape, 'legend-'+shape+'-distrito']"></span>
       Distrito
     </span>
@@ -60,8 +60,13 @@
 
 <script>
 import { between } from '~/common/utils.js'
+import { useReporteStore } from '~/stores/reporte'
 
 export default {
+  setup() {
+    const reporteStore = useReporteStore()
+    return { reporteStore }
+  },
   name: 'leyenda',
   props:
     {
@@ -89,11 +94,12 @@ export default {
       }
   },
   mounted(){
-    this.isRegion = this.$store.getters['reporte/isRegion']
-    this.isMancomunidad = this.$store.getters['reporte/isMancomunidad']
+    this.isRegion = reporteStore.isRegion
+    this.isMancomunidad = reporteStore.isMancomunidad
   },
   data: () => {
     return {
+      componentName: 'leyenda',
       isRegion: false,
       isMancomunidad: false,
       niveles: {

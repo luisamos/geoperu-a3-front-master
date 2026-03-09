@@ -65,7 +65,7 @@
 <script>
 import Table from "~/components/SD/Table";
 import Map from "~/components/SD/Map";
-import ListaDptos from "~/static/lista_departamentos.json";
+import ListaDptos from "~/public/lista_departamentos.json";
 import LogoSD from "~/components/LogoSD";
 import LogoSD2 from "~/components/LogoSD2";
 import formatSvgThenScreenShot from "~/mixins/ScreenShot";

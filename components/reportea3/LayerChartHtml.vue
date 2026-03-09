@@ -13,7 +13,7 @@
         </div>
       </div>
       <div
-        :style="{'width':'42%','float':'left','height':'100%','padding-top':$store.getters['reporte/tipo']==='dist' ? '7.5%' : '10%' }"
+        :style="{'width':'42%','float':'left','height':'100%','padding-top':reporteStore.tipo==='dist' ? '7.5%' : '10%' }"
       >
         <div style="width:40%;height:100%;float:left;text-align:left;">
           <div style="margin-top:0px;"> <span>_____</span> </div>
@@ -26,7 +26,7 @@
         </div>
         <div style="width:60%;height:100%;float:left;">
           <div
-            :style="{'text-align':'right','font-size': $store.getters['reporte/tipo']==='dist' ? '15px' : '16.5px' ,'font-weight':'600','padding-right':'40%'}"
+            :style="{'text-align':'right','font-size': reporteStore.tipo==='dist' ? '15px' : '16.5px' ,'font-weight':'600','padding-right':'40%'}"
           >
             <span class="label-nacional" v-text="data.nacional"></span>
             <br>
@@ -35,7 +35,7 @@
             <span class="label-provincia" v-text="data.provincia"></span>
             <br>
             <span
-              v-if="$store.getters['reporte/tipo']==='dist'"
+              v-if="reporteStore.tipo==='dist'"
               class="label-distrito"
               v-text="data.distrito"
             ></span>
@@ -48,7 +48,12 @@
 </template>
 
 <script>
+import { useReporteStore } from '~/stores/reporte'
 export default {
+  setup() {
+    const reporteStore = useReporteStore()
+    return { reporteStore }
+  },
   props: ["title", "data"]
 };
 </script>

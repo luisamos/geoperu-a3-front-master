@@ -1,5 +1,5 @@
 <template>
-<div :class="$options.name">
+<div :class="componentName">
     <div class="trabaja__title">
         Agresor - ¿Trabaja?
     </div>
