@@ -1,5 +1,4 @@
 import { getDataUri } from '~/common/utils.js'
-import { jsPDF } from 'jspdf'
 
 export default {
     methods: {
@@ -29,8 +28,9 @@ export default {
                 request.send();
             })
         },
-        imageToPdf(imgDataUri, page = "a3", margin = "0.5", orientation='l') {
+        async imageToPdf(imgDataUri, page = "a3", margin = "0.5", orientation='l') {
             if (import.meta.client) {
+                const { jsPDF } = await import('jspdf')
                 let options = {
                     page: page,
                     margin: margin,

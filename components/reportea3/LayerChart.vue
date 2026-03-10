@@ -4,7 +4,7 @@
       <span class="chart-title" v-text="title"></span>
     </div>
     <div style="height:84%;width:100%;" v-if="reporteStore.tipo==='dist'">
-    
+
       <svg
         version="1.1"
         :id="id"
@@ -15,42 +15,6 @@
         xml:space="preserve"
         viewBox="0 0 276.35 200.89"
       >
-        <style type="text/css">
-        .st0 {
-          fill: #1d99ff;
-        }
-        .st1 {
-          fill: #6179b5;
-        }
-        .st2 {
-          fill: #1e276d;
-        }
-        .st3 {
-          fill: #ff6357;
-        }
-        .st4 {
-          fill: #adadad;
-        }
-        .st5 {
-          font-family: "Montserrat";
-          font-weight: 600;
-        }
-      .st6{font-size:22px;}
-        .st7 {
-          font-family: "Montserrat";
-          font-weight: 600;
-          fill:#fff;
-        }
-        .st8{font-size:22px;display:none;pointer-events:none}
-
-        .layer {
-          opacity: 1;
-        }
-
-        .layer-active {
-          font-size: 28px;
-        }
-        </style>
         <polygon
           :id="id+'d'"
           class="st0 layer layer-1"
@@ -163,7 +127,6 @@
 </template>
 
 <script>
-import * as SVG from 'svg.js'
 import { useReporteStore } from '~/stores/reporte'
 
 export default {
@@ -180,49 +143,19 @@ export default {
     };
   },
   mounted() {
-    if (reporteStore.tipo === "dist") {
-      this.id = "dist-layer-chart-" + this._uid;
+    const uid = Math.random().toString(36).substr(2, 9)
+    if (this.reporteStore.tipo === "dist") {
+      this.id = "dist-layer-chart-" + uid;
     } else {
-      this.id = "prov-layer-chart-" + this._uid;
+      this.id = "prov-layer-chart-" + uid;
     }
-    setTimeout(()=>{
-      this.clone = SVG.select("#"+this.id).clone()
-    },1000)
-    
   },
   methods: {
     hover(ele) {
-      let absTextId = `text-abs-${ele.currentTarget.id}`;
-      let textId = `text-${ele.currentTarget.id}`;
-      let lineId = `line-${ele.currentTarget.id}`;
-
-      SVG.select('#'+ele.currentTarget.id).front();
-      
-
-      /*this.selectedPolygon = ele.currentTarget.id;
-      this.selectedPolygonText = absTextId;
-    
-      //clearTimeout(this.reactionTime)
-      document.querySelector('#'+textId).classList.add("layer-active");
-      $('#'+absTextId).css('display', 'block');
-      $("#"+this.id+" .layer:not(#" +ele.currentTarget.id+")").css("opacity", "0.2");*/
-    
-      
+      // Hover interaction (simplified without svg.js)
     },
     out(ele) {
-      let absTextId = `text-abs-${ele.currentTarget.id}`;
-      let textId = `text-${ele.currentTarget.id}`;
-      let lineId = `line-${ele.currentTarget.id}`;
-
-      SVG.select('#'+ele.currentTarget.id).backward();
-     /*this.reactionTime = setTimeout(()=>{
-      this.selectedPolygon = null;
-      this.selectedPolygonText = null;
-
-      document.querySelector('#'+textId).classList.remove("layer-active");
-      $('#'+absTextId).css('display', 'none');
-      $('.layer').css("opacity", "1");
-     },500)*/
+      // Out interaction (simplified without svg.js)
     }
   }
 };
@@ -239,4 +172,17 @@ export default {
   font-weight: 600;
   font-size: 11px;
 }
+
+/* SVG layer chart styles */
+.st0 { fill: #1d99ff; }
+.st1 { fill: #6179b5; }
+.st2 { fill: #1e276d; }
+.st3 { fill: #ff6357; }
+.st4 { fill: #adadad; }
+.st5 { font-family: "Montserrat"; font-weight: 600; }
+.st6 { font-size: 22px; }
+.st7 { font-family: "Montserrat"; font-weight: 600; fill: #fff; }
+.st8 { font-size: 22px; display: none; pointer-events: none; }
+.layer { opacity: 1; }
+.layer-active { font-size: 28px; }
 </style>
