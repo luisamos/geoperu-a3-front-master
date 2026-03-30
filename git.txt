@@ -1,6 +1,9 @@
+#
+# geoperu-a3-front-master
+#
 git init
-git add README.md
-git commit -m "first commit"
+git add .
+git commit -m "v.1.0 | 30/03/2026 10:18"
 git branch -M main
-git remote add origin https://github.com/luisamos/geoperu-a3-front-master.git
+git remote add origin https://github.com/luisamos/geoperu-a3-back-master.git
 git push -u origin main
