@@ -1,5 +1,5 @@
 # Specifies where to get the base image (Node v12 in our case) and creates a new container for it
-FROM node:14.18.1-alpine as development
+FROM node:14.18.1-alpine AS development
 # Install distro dependencies
 RUN apk add --no-cache git python3 make g++
 
@@ -11,13 +11,14 @@ WORKDIR ${APP_BUILD_DIR}
 
 # Install dependencies
 COPY package*.json ./
-RUN npm install && \ 
+RUN npm install && \
     npm install -g nuxt@2.15
 
 ARG MAP_BASE_URL=https://visor.geoperu.gob.pe/print
 ARG MAP_URL=https://visor.geoperu.gob.pe/print/printer/elevation/
 ARG REPORTE_URL=https://visor.geoperu.gob.pe/api/a3/consulta_super/readA3.php
 ARG REPORTE_CEM_URL=https://visor.geoperu.gob.pe/api/a3/consulta_cem/readA3.php
+ARG APP_BUILD_DIR=/app
 
 ENV MAP_BASE_URL=${MAP_BASE_URL}
 ENV MAP_URL=${MAP_URL}
