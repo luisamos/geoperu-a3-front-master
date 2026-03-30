@@ -1,7 +1,15 @@
 # Specifies where to get the base image (Node v12 in our case) and creates a new container for it
 FROM node:14.18.1-alpine AS development
 # Install distro dependencies
-RUN apk add --no-cache git python3 make g++
+RUN set -eux; \
+    for i in 1 2 3; do \
+      apk add --no-cache \
+        --repository=https://dl-cdn.alpinelinux.org/alpine/v3.14/main \
+        --repository=https://dl-cdn.alpinelinux.org/alpine/v3.14/community \
+        git python3 make g++ && break; \
+      echo "apk install failed, retrying ($i/3)..." >&2; \
+      sleep 3; \
+    done
 
 ARG APP_BUILD_DIR=/app
 ENV APP_BUILD_DIR=${APP_BUILD_DIR}
