@@ -11,7 +11,8 @@ module.exports = {
     MAP_BASE_URL: process.env.MAP_BASE_URL || "https://visor.geoperu.gob.pe/print",
     REPORTE_URL: process.env.REPORTE_URL || "https://visor.geoperu.gob.pe/print/printer/elevation/",
     MAP_URL: process.env.MAP_URL || "https://visor.geoperu.gob.pe/api/a3/consulta_super/readA3.php",
-    REPORTE_CEM_URL: process.env.REPORTE_CEM_URL || "https://visor.geoperu.gob.pe/api/a3/consulta_cem/readA3.php"
+    REPORTE_CEM_URL: process.env.REPORTE_CEM_URL || "https://visor.geoperu.gob.pe/api/a3/consulta_cem/readA3.php",
+    RENADESPPLE_URL: process.env.RENADESPPLE_URL || "https://visor.geoperu.gob.pe/api/geoperu-reportes/renadespple"
   },
   
   /*
