@@ -19,17 +19,6 @@
                     </select>
                 </div>
               
-                <!-- <button
-                @click="print"
-                data-html2canvas-ignore
-                class="btn r-btn no-print"
-                data-toggle="tooltip"
-                data-placement="right"
-                style="font-size:24px;background-color:transparent;color:gray;"
-                >
-                <i class="fa fa-print"></i>
-                </button> -->
-               
                  <button
                 @click="genPdf"
                 data-html2canvas-ignore
@@ -56,7 +45,6 @@
 
 <script>
 import html2canvas from "html2canvas";
-//import FormGroup from "~/components/Ficha/FormGroup";
 import Header from "~/components/Renadespple/Header";
 import Metric from "~/components/Renadespple/Metric";
 import SearchMap from "~/components/Renadespple/SearchMap";
@@ -66,6 +54,7 @@ import SlicedChart from "~/components/Renadespple/SlicedChart";
 import LogoMapea from "~/components/LogoMapea";
 import LogoSegdi from "~/components/LogoSegdi";
 import formatSvgThenScreenShot from "~/mixins/ScreenShot";
+import { RENADESPPLE_URL } from "~/endpoints";
 
 export default {
   layout: "ficha",
@@ -134,7 +123,7 @@ export default {
       generatingPdf: 0,
       pdfOptions: {
         page: "a4",
-        margin: "0.5", //cm
+        margin: "0.5",
         orientation: "l"
       }
     };
@@ -151,10 +140,7 @@ export default {
       if (this.ubigeo) {
         const path = `${this.$route.path}?ubigeo=${this.ubigeo}&anio=${this.anio}`;
         this.$router.push(path);
-        this.getData(
-          "https://visor.geoperu.gob.pe/api/geoperu-proyectos/renadesple",
-          { ubigeo: this.ubigeo,anio: this.anio }
-        );
+        this.getData(this.ubigeo, this.anio);
       }
     },
     formatSvgThenScreenShot: function(SVG_ELEM, SCREENSHOT_ELEMENT) {
@@ -173,14 +159,9 @@ export default {
 
           let canvas = document.createElement("canvas");
 
-          //convert SVG into a XML string
           let xml = new XMLSerializer().serializeToString(this);
 
-          // Removing the name space as IE throws an error
-          xml = xml.replace(/xmlns=\"http:\/\/www\.w3\.org\/2000\/svg\"/, "");
-
-          //draw the SVG onto a canvas
-          //canvg(canvas, xml);
+          xml = xml.replace(/xmlns="http:\/\/www\.w3\.org\/2000\/svg"/, "");
 
           canvg(canvas, xml, { ignoreMouse: true, ignoreAnimation: true });
 
@@ -198,14 +179,9 @@ export default {
           parentNode.appendChild(canvas);
         });
 
-        // onclone: function(document) {
-        //     $(document).find(elementsToIgnore).remove(); //works
-        //     $('<p>TEST</p>').insertAfter($(document)); //doesn't work!
-        // }
-
         let reportPDF = html2canvas(SCREENSHOT_ELEMENT, {
           scale: 1.5,
-          x: 0, // this are our custom x y properties
+          x: 0,
           y: 0,
           allowTaint: false,
           backgroundColor: null,
@@ -215,8 +191,6 @@ export default {
             $(ele).css("padding", "0px");
             $(ele).css("border", "none");
             $(ele).removeClass("always-middle-screen");
-            //$(ele).css("transform", "scale(1)");
-            //ele.style.transform = "scale(1)";
           }
         }).then(canvas => {
           let ctx = canvas.getContext("2d");
@@ -229,7 +203,6 @@ export default {
             nodesToRecover.forEach(function(pair) {
               pair.parent.appendChild(pair.child);
             });
-            //saveAs(blob, 'screenshot_'+ moment().format('YYYYMMDD_HHmmss')+'.png');
           });
           return canvas.toDataURL("image/png", 1.0);
         });
@@ -237,13 +210,14 @@ export default {
         resolve(reportPDF);
       });
     },
-    getData: async function(url, data) {
+    getData: async function(ubigeo, anio) {
       this.$store.dispatch("Loading/START", {
         tipo: "Overlay",
         text: `Cargando...`
       });
       this.isBlur = true;
-      await fetch(url + "?ubigeo=" + data.ubigeo+"&anio="+data.anio, {
+      const url = `${RENADESPPLE_URL}/datos/${ubigeo}?anio=${anio}`;
+      await fetch(url, {
         method: "GET",
         mode: "cors",
         cache: "no-cache",
@@ -257,7 +231,7 @@ export default {
         .then(response => response.json())
         .then(data => {
             this.dataModel = data;
-            this.ddlAnios = data.anios
+            this.ddlAnios = data.anios;
             this.isBlur = false;
           
         })
@@ -265,18 +239,17 @@ export default {
           
         });
 
-
-        this.$refs["chartHistorico"].refresh()
-        this.$refs["chartGenero"].refresh()
-        this.$refs["chartPais"].refresh()
-        this.$refs["chartMotivo"].refresh()
-        this.$refs["chartSituacion"].refresh()
+        this.$refs["chartHistorico"].refresh();
+        this.$refs["chartGenero"].refresh();
+        this.$refs["chartPais"].refresh();
+        this.$refs["chartMotivo"].refresh();
+        this.$refs["chartSituacion"].refresh();
       
       this.$store.dispatch("Loading/STOP");
     },
     imageToPdf: function(
       imgDataUri,
-      page = "a3",
+      page = "a4",
       margin = "0.5",
       orientation = "l"
     ) {
@@ -301,7 +274,7 @@ export default {
           "FAST"
         );
 
-        return pdf; //.save(`${outputName}.pdf`)
+        return pdf;
       }
     },
     print() {
@@ -312,7 +285,6 @@ export default {
         tipo: "Overlay",
         text: `Generando Reporte`
       });
-      //this.gaEvent("send", "event", "Reporte", "pdf", this.$route.params.id);
 
       const svgElements = $("#reporte").find(".svg-icon");
       const mainElement = document.querySelector("#reporte");
@@ -378,37 +350,9 @@ export default {
     align-items: center;
     justify-content: flex-end;
 }
-.detenciones {
-    
-}
 .historico {
-    
     grid-column: span 3;
     grid-row: span 2;
-}
-
-.edad-promedio {
-    
-}
-
-.genero {
-    
-}
-
-.pais-nacimiento {
-
-}
-
-.motivo-detencion {
-
-}
-
-.situacion-procesal {
-
-}
-
-.distribucion-detenciones {
-    
 }
 
 .distribucion-delitos {
@@ -448,8 +392,8 @@ export default {
 .search-bar {
   position: absolute;
   z-index: 9999;
-  top: 5%; /* position the top  edge of the element at the middle of the parent */
-  left: 50%; /* position the left edge of the element at the middle of the parent */
+  top: 5%;
+  left: 50%;
   width: 60vw;
   max-width: 800px;
   transform: translate(-50%, -50%);
